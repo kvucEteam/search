@@ -1,0 +1,89 @@
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.link_container {
+    margin-top: -20px;
+}
+
+.post-box{
+    margin-left: -10px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+.fag_label_container {
+    margin: 0px;
+}
+
+.fag_label_h4 {
+    margin: 0px;
+}
+
+.hr_container {
+    padding: 0px;
+}
+
+.readmore {
+    font-size: 12px;
+    color: #888;
+}
+
+.readmore_container {
+    padding-top: 10px;
+}
+
+.thumbnail {
+    border: 1px solid #aaa;
+    
+}
+
+.tag_label_container {
+    padding: 0px;
+    display: block;
+    float: left;
+    margin: -10px 0 0 2px;
+    width: 100%;
+}
+
+.tag_label {
+    margin-right: 10px;
+    margin-bottom: 0px;
+
+}
+
+.btn_overblik {
+    margin-left: 0px;
+    margin-top: 20px;
+    /* bottom: -13px; */
+}
+
+.input_text {
+    height: 34px;
+    width: 60%;
+    padding-top: 0px;
+    color:#ccc;
+}
+
+.btn-search {
+    margin-left: 1%;
+    margin-top: -3px;
+}
+
+.seach_container {
+    margin-bottom: 2%;
+}
+
+.fag_btn_container{
+    margin-bottom: 10px;
+    width: 60%;
+}
+
+.btn-fag{
+    margin-bottom: 10px;
+}

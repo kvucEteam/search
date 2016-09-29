@@ -1,0 +1,97 @@
+[{
+	"objId": 0,
+	"meta_objType": ["Kategoriseringsøvelse"],
+	"meta_subject": ["Dansk"],
+	"meta_objTitel": "Sproglige virkemidler - hip hop",
+	"meta_objUrl": "https://www.vucdigital.dk/danA_markering/black_power.html",
+	"meta_imgUrl": "https://www.vucdigital.dk/dansk/img/5.jpg",
+	"meta_studentPurpose": "At skærpe bevidstheden om sprog og stilistik i lyrik.",
+	"meta_studentPrerequisites": null,
+	"meta_workMethod": "Klik på ordene i Per Vers sangen &quot;Black Power&quot; og vælg den korrekte kategori.",
+	"meta_teachingPurpose": ["Dokumentere indblik i sprogets funktion og variation, herunder dets samspil med kultur og samfund", "Navigere og udvælge information i skærmbaserede tekster", "Analysere, fortolke og perspektivere primært fiktive tekster i alle medier"],
+	"meta_activityForm": ["Egnet til selvstændigt arbejde", "Kræver høretelefoner"],
+	"meta_tags": ["lyrik", "sprog og stil", "hip hop", "Per Vers", "Black Power"],
+	"meta_level": ["A"],
+	"meta_theme": ["Sproglig bevidsthed"],
+	"meta_duration": "10-15 min",
+	"meta_difficulty": "Medium",
+	"meta_form": ["Opgave/træning"],
+	"meta_media_type": ["Video", "Billeder", "Tekst"],
+	"meta_author": [{
+		"firstname": "Morten",
+		"lastname": "Lassen",
+		"titel": "Lærer",
+		"institution": "KVUC",
+		"email": "ml@kvuc.dk"
+	}, {
+		"firstname": "Andreas",
+		"lastname": "Tonnesen",
+		"titel": "Lærer",
+		"institution": "KVUC",
+		"email": "at@kvuc.dk"
+	}]
+}, {
+	"objId": 1,
+	"meta_objType": ["Øvelse"],
+	"meta_subject": ["Kemi"],
+	"meta_objTitel": "Dannes der bundfald 1",
+	"meta_objUrl": "https://www.vucdigital.dk/kemiC_bundfald/bundfald_over_a.html",
+	"meta_imgUrl": "https://www.vucdigital.dk/kemi/img/bundfald_doit.jpg",
+	"meta_studentPurpose": "At forstå hvordan man kombinerer simple ioners formler til formler for ionforbindelser. Forstå at nogle ionforbindelser er let opløselige mens andre er tungtopløselige. Bruge skemaet til at forudsige hvilke ionforbindelser der er tungtopløselige",
+	"meta_studentPrerequisites": "At have set introduktionsvideoen &quot;fældningsreaktioener&quot;.",
+	"meta_workMethod": "Forudsig om to ioner danner tungtopløselig ionforbindelse og dermed bundfald. Flimen af forsøget vises når man har svaret rigtigt.",
+	"meta_teachingPurpose": ["benytte det kemiske fagsprog", "beskrive stoffers opbygning og simple kemiske reaktioner", "relatere observationer, modelforestillinger og symbolfremstillinger til hinanden", "beskrive eksperimenter og præsentere resultater såvel skriftligt som mundtligt"],
+	"meta_activityForm": ["Egnet til selvstændigt arbejde", "Egnet til samarbejde to og to"],
+	"meta_tags": ["ioner", "ionforbindelse", "salt", "iongitter", "letopløselig", "tilstandsformer"],
+	"meta_level": ["C", "D", "E", "F", "Basis"],
+	"meta_theme": ["Kemiske symboler"],
+	"meta_duration": "0-5 min",
+	"meta_difficulty": "Medium",
+	"meta_form": ["Opgave/træning"],
+	"meta_media_type": ["Interaktiv træningsopgave"],
+	"meta_author": [{
+		"firstname": "Gerda",
+		"lastname": "Carlsson",
+		"titel": "Lektor",
+		"institution": "KVUC",
+		"email": "gc@kvuc.dk"
+	}, {
+		"firstname": "Lene Hedegaard",
+		"lastname": "Jensen",
+		"titel": "Lektor",
+		"institution": "KVUC",
+		"email": "le@kvuc.dk"
+	}]
+}, {
+	"objId": 2,
+	"meta_objType": ["Drag and drop", "Billed", "Video"],
+	"meta_subject": ["Engelsk"],
+	"meta_objTitel": "Character exercise: &quot;My Dear American&quot;, part one",
+	"meta_objUrl": "https://www.vucdigital.dk/engB_billeddrag_da/billeddrag_dearamericans_1.html",
+	"meta_imgUrl": "https://www.vucdigital.dk/engelsk/img/dummy_drag_words_american.jpg",
+	"meta_studentPurpose": "In this exercise you work with understanding the two main characters and their development. You also practice descriptive vocabulary.",
+	"meta_studentPrerequisites": "kulle kunne forstå talt engelsk med (nogen) accent",
+	"meta_workMethod": "Watch the first half of the film and choose the words you think describe each character best. Then watch the second half of the film and choose the words you think describe the characters best now.",
+	"meta_teachingPurpose": ["At forstå mundtligt engelsk om almene og faglige emner", "At beherske et varieret ordforråd", "At kunne gøre rede for indhold og synspunkter i engelsksproget mediestof, herunder film", "At kunne analysere og fortolke mediestof, herunder film"],
+	"meta_activityForm": ["Egnet til selvstændigt arbejde", "Egnet til samarbejde to og to"],
+	"meta_tags": ["U.S.", "The American Dream", "American Culture", "Film analysis", "Characterisation"],
+	"meta_level": ["A", "B"],
+	"meta_theme": ["The American Dream"],
+	"meta_duration": "10-15 min",
+	"meta_difficulty": "Medium",
+	"meta_form": ["Opgave/træning"],
+	"meta_media_type": ["Video", "Billeder", "Tekst"],
+	"meta_author": [{
+		"firstname": "Nanna",
+		"lastname": "Lund",
+		"titel": "Lærer",
+		"institution": "VUC Roskilde",
+		"email": "rnl@vucroskilde.dk"
+	}, {
+		"firstname": "Natalia",
+		"lastname": "Auer",
+		"titel": "Lærer",
+		"institution": "Vestegnen's HF og VUC",
+		"email": "na@vucv.dk"
+	}]
+}]

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--   http://eundervisning-wp.dk/objekter/kemiC_visningsite/  -->
+    <title>Søg på vucdigital.dk</title>
+    <!-- http://www.robotstxt.org/meta.html -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../library/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="visningssite.css" type="text/css" />
+</head>
+
+<body>
+    <div class="container-fluid container_main">
+        <h1>Søg på vucdigital.dk</h1>
+        <div class="fag_btn_container">
+        </div>
+        <div class="seach_container">
+            <input type="text" name="search" class="input_text" value="søg på vucdigital">
+            <input class="btn btn-primary btn-search" type="submit" value="SØG">
+        </div>
+        <div class="tn_container">
+        </div>
+    </div>
+    <script src="../library/vendor_scripts.js"></script>
+    <script src="../library/custom_scripts.js"></script>
+    <script src="../library/js/masonry_min.js"></script>
+    <script src="../library/js/visningssite.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        one_line_footer();
+        getAjaxData("GET", "json/data.json", false, "json");
+    });
+    </script>
+    <script src="search.js"></script>
+</body>
+
+</html>
