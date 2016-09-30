@@ -3,15 +3,11 @@ $(document).ready(function() {
     build_topmenu();
     build_collapsed_details();
 
-    $(".readmore_container").click(function() {
-        that = $(this);
-        if ($(this).hasClass("selected") == true) {
-            console.log("hide it" + that);
-            hidethemdetails(that);
-        } else {
-            showthemdetails(that);
-            console.log("show it" + that);
-        }
+    $(".btn_overblik").click(function() {
+        var num = $(this).index(".btn_overblik");
+
+        build_overview(num);
+
     });
 });
 
@@ -83,6 +79,91 @@ function hidethemdetails(obj) {
     $(".tn_container").masonry();
     $(".glyphicon-play").eq(indeks).css("-webkit-transform", "rotate(0deg)").css("-ms-transform", "rotate(0deg)").css("transform", "rotate(0deg)");
     $(".readmore_container").eq(indeks).removeClass("selected");
+}
+
+
+function build_overview(indeks) {
+    var jd = jsonData[indeks];
+
+    var HTML = "<h2>Overblik over læringsobjekt - " + jd.meta_objTitel + "</h2>";
+
+    HTML += '<p><b>Objekttype: </b><em>';
+    for (var o = 0; o < jd.meta_objType.length; o++) {
+        HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+    HTML += "<p><b>URL til objektet: </b><a href='" + jd.meta_objUrl + "'>" + jd.meta_objUrl + "</a></p>";
+    HTML += "<p><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
+    //HTML += "<img src='"+jd.meta_imgUrl+"' class='img-responsive'/>";
+    HTML += "<p><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
+    HTML += "<p><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
+    HTML += '<p><b>Læringsmål: </b><em>';
+    for (var p = 0; p < jd.meta_teachingPurpose.length; p++) {
+        HTML += jd.meta_teachingPurpose[p] + ((p == jd.meta_teachingPurpose.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+    HTML += '<p><b>Aktivitetsform: </b><em>';
+    for (var o = 0; o < jd.meta_activityForm.length; o++) {
+        HTML += jd.meta_activityForm[o] + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+
+    HTML += '<p><b>Tags: </b><em>';
+    for (var o = 0; o < jd.meta_tags.length; o++) {
+        HTML += jd.meta_tags[o] + ((o == jd.meta_tags.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+
+    HTML += '<p><b>Niveau: </b><em>';
+    for (var o = 0; o < jd.meta_level.length; o++) {
+        HTML += jd.meta_level[o] + ((o == jd.meta_level.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+
+    HTML += '<p><b>Tema: </b><em>';
+    for (var o = 0; o < jd.meta_theme.length; o++) {
+        HTML += jd.meta_theme[o] + ((o == jd.meta_theme.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+    HTML += "<p><b>Varighed: </b>" + jd.meta_duration + "</p>";
+    HTML += "<p><b>Sværhedsgrad: </b>" + jd.meta_difficulty + "</p>";
+    HTML += '<p><b>Form: </b><em>';
+    for (var o = 0; o < jd.meta_form.length; o++) {
+        HTML += jd.meta_form[o] + ((o == jd.meta_form.length - 1) ? '' : ', ');
+    }
+    HTML += '</em></p>';
+    HTML += "<p><b>Medietype: </b>" + jd.meta_media_type + "</p>";
+
+    HTML += '<p><b>Forfattere: </b><p>';
+    for (var o = 0; o < jd.meta_author.length; o++) {
+        console.log(jd.meta_author[o].firstname);
+         HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname +" - ";
+         HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
+
+    }
+    HTML += '</em></p>';
+
+
+    UserMsgBox("body", HTML);
+}
+
+/*objId: null, // "objekt id",             TYPE: integer, objektets id ift. tabellen over alle objekter.
+    meta_objType: [], // "objekt type",           TYPE: array of strings, feks: ["Markeringsøvelse", "Interaktiv model", ...]
+    meta_subject: [], // "Fag",                   TYPE: array of strings, feks: ["Dansk", "Engelsk", ...]       
+    meta_objUrl: null, // "URL til objektet"       TYPE: string, feks: "danA_bevaegelser/bevaegelser.html"
+    meta_studentPurpose: null, // "Kursistformål"          TYPE: string, feks: "En tekst bevæger sig både gennem forskellige faser..."
+    meta_studentPrerequisites: null, // "Kursistforudsætninger", TYPE: string, feks: "Objektet forusætter kendskab til ..."
+    meta_workMethod: null, // "Arbejdsmetode"          TYPE: string, feks: "Placer tekststykkerne, så de står i den rigtige..."
+    meta_teachingPurpose: [], // "Læringsmål"             TYPE: array of strings, feks: ["Navigere og udvælge...", "Forholde sig til..."]
+    meta_activityForm: [], // "Aktivitetsform"         TYPE: array of strings, feks: ["Egnet til selvstændigt arbejde", "Kræver høretelefoner"]
+    meta_tags: [], // "Tags"                   TYPE: array of strings, feks: ["sproglig bevidsthed", "skriftlighed", ...]
+    meta_level: [], // "Niveau"                 TYPE: array of strings, feks: ["A", "B"]
+    meta_theme: [], // "Tema"                   TYPE: array of strings, feks: ["Sproglighed", "Skriftlighed", ...]
+    meta_duration: null, // "Varighed"               TYPE: string, feks: "10 - 15 min"
+    meta_difficulty: null, // "Sværhedsgrad"           TYPE: string, feks: "Svær"
+    meta_form: [], // "Form"                   TYPE: array of strings, feks: [Opgave/træning", "Formidling"]
+    meta_media_type: [], // "Medietype"              TYPE: array of strings, feks: ["Billeder", "Lyd", ...]
+    meta_author: [] // "Forfatter"              TYPE: array of objects, feks: [forfatter_1, forfatter_2, ...]
 }
 
 
