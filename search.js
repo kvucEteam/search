@@ -1,21 +1,80 @@
+var active_tn; 
+
 $(document).ready(function() {
-    console.log(jsonData[0].meta_level);
+
     build_topmenu();
-    build_collapsed_details();
+    build_tn_grid();
 
     $(".btn_overblik").click(function() {
         var num = $(this).index(".btn_overblik");
-
         build_overview(num);
-
     });
+
+    $(".btn-search").click(function() {
+        perform_search();
+    });
+
+    $(".btn-fag").click(function() {
+        click_fag($(this));
+    });
+
+    $(".thumbnail").click(function(){
+        active_tn = $(this).index(".thumbnail");
+        console.log(active_tn);
+    });
+
+    var clipboard = new Clipboard('.btn-get_link', {
+        text: function() {
+            UserMsgBox("body", "<h4>Link kopieret </h4>Linket: <b>" + jsonData[active_tn].meta_objUrl  + "</b> er kopieret til udklipsholderen!");
+            return jsonData[active_tn].meta_objUrl;
+
+        }
+    });
+    var clipboard_embed = new Clipboard('.btn-get_embed', {
+        text: function() {
+            var embedlink = '<iframe height="570" width="100%" frameborder="0" src="'+ jsonData[active_tn].meta_objUrl +'"></iframe>'
+            var help_moodle ='<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=0cKkCRRTC_c">Hjælp til indlejring i Moodle </a>';
+            UserMsgBox("body", "<h4>Link kopieret til udklipsholderen!</h4>Indsæt linket i dit LMS eller på din webside<br/>" + help_moodle);
+            return embedlink;
+
+        }
+    });
+
 });
 
 
-var lorem = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+function perform_search() {
+    var search_string = $(".search_textfield").val();
 
+    for (var i = 0; i < $(".btn-fag").length; i++) {
+        if ($(".btn-fag").eq(i).hasClass("active")) {
+            search_string += " " + $(".btn-fag").eq(i).text();
+        }
+    }
+    alert("Søgestrengen er: " + search_string);
 
-function build_collapsed_details() {
+}
+
+function click_fag(obj) {
+    var indeks = obj.index(".btn-fag");
+    //hent_fag(indeks);
+    console.log(indeks);
+    if (obj.hasClass("active")) {
+        console.log("has Class")
+        obj.removeClass("btn-primary active");
+        obj.addClass("btn-info");
+    } else {
+        obj.addClass("btn-primary active");
+        obj.removeClass("btn-info");
+    }
+
+}
+
+function hent_fag(obj_num) {
+    alert("lad os vise dig alle objk")
+}
+
+function build_tn_grid() {
     for (var i = 0; i < jsonData.length; i++) {
         var jd = jsonData[i];
         console.log(jsonData[i].meta_imgUrl);
@@ -34,7 +93,7 @@ function build_collapsed_details() {
             HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
         }
         HTML += '</em></p>';
-        HTML += '<div class="link_container"><span class="btn btn-sm btn-info"> Se </span> <span class="btn btn-sm btn-info"> Hent link </span> <span class="btn btn-sm btn-info"> Indsæt i LMS </span> </div>';
+        HTML += '<div class="link_container"><span class="btn btn-sm btn-info"><a id="copy_href" href="' + jd.meta_objUrl + '"> Se </a></span> <span class="btn btn-sm btn-info btn-get_link"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed"> Indsæt i LMS </span> </div>';
         HTML += '<p><b>Kursistformål: </b>  ' + jd.meta_studentPurpose + '</p>';
         HTML += "<div class='col-xs-4 tag_label_container'>"
         for (var u = 0; u < jd.meta_tags.length; u++) {
@@ -59,34 +118,13 @@ function build_topmenu() {
 }
 
 
-function showthemdetails(obj) {
-    $(".extrainfo").remove();
-    var indeks = obj.parent().parent().index(".thumbnail");
-    console.log(indeks);
-    var HTML = "<div class='extrainfo col-xs-12'><div class=''><p><b>Læringsmål: </b> " + lorem.slice(0, Math.random() * 500) + "</p></div>";
-    HTML += "</div><div class='btn btn-info btn_overblik'>Se overblik</div></div>";
-    $(".thumbnail").eq(indeks).append(HTML);
-    $(".tn_container").masonry();
-    $(".glyphicon-play").eq(indeks).css("-webkit-transform", "rotate(90deg)").css("-ms-transform", "rotate(90deg)").css("transform", "rotate(90deg)");
-    $(".readmore_container").eq(indeks).addClass("selected");
-}
-
-function hidethemdetails(obj) {
-
-    var indeks = obj.parent().parent().index(".thumbnail");
-    console.log(indeks);
-    $(".extrainfo").remove();
-    $(".tn_container").masonry();
-    $(".glyphicon-play").eq(indeks).css("-webkit-transform", "rotate(0deg)").css("-ms-transform", "rotate(0deg)").css("transform", "rotate(0deg)");
-    $(".readmore_container").eq(indeks).removeClass("selected");
-}
-
 
 function build_overview(indeks) {
     var jd = jsonData[indeks];
 
     var HTML = "<h2>Overblik over læringsobjekt - " + jd.meta_objTitel + "</h2>";
-
+    HTML += "<img src='" + jd.meta_imgUrl + "' class='img-responsive cropped'/>";
+    HTML += '<h4>Detaljer om objektet: </h4>';
     HTML += '<p><b>Objekttype: </b><em>';
     for (var o = 0; o < jd.meta_objType.length; o++) {
         HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
@@ -94,7 +132,7 @@ function build_overview(indeks) {
     HTML += '</em></p>';
     HTML += "<p><b>URL til objektet: </b><a href='" + jd.meta_objUrl + "'>" + jd.meta_objUrl + "</a></p>";
     HTML += "<p><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
-    //HTML += "<img src='"+jd.meta_imgUrl+"' class='img-responsive'/>";
+
     HTML += "<p><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
     HTML += "<p><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
     HTML += '<p><b>Læringsmål: </b><em>';
@@ -137,8 +175,8 @@ function build_overview(indeks) {
     HTML += '<p><b>Forfattere: </b><p>';
     for (var o = 0; o < jd.meta_author.length; o++) {
         console.log(jd.meta_author[o].firstname);
-         HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname +" - ";
-         HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
+        HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname + " - ";
+        HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
 
     }
     HTML += '</em></p>';
