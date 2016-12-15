@@ -1,4 +1,4 @@
-var active_tn; 
+var active_tn;
 
 $(document).ready(function() {
 
@@ -18,22 +18,22 @@ $(document).ready(function() {
         click_fag($(this));
     });
 
-    $(".thumbnail").click(function(){
+    $(".thumbnail").click(function() {
         active_tn = $(this).index(".thumbnail");
         console.log(active_tn);
     });
 
     var clipboard = new Clipboard('.btn-get_link', {
         text: function() {
-            UserMsgBox("body", "<h4>Link kopieret </h4>Linket: <b>" + jsonData[active_tn].meta_objUrl  + "</b> er kopieret til udklipsholderen!");
+            UserMsgBox("body", "<h4>Link kopieret </h4>Linket: <b>" + jsonData[active_tn].meta_objUrl + "</b> er kopieret til udklipsholderen!");
             return jsonData[active_tn].meta_objUrl;
 
         }
     });
     var clipboard_embed = new Clipboard('.btn-get_embed', {
         text: function() {
-            var embedlink = '<iframe height="570" width="100%" frameborder="0" src="'+ jsonData[active_tn].meta_objUrl +'"></iframe>'
-            var help_moodle ='<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=0cKkCRRTC_c">Hjælp til indlejring i Moodle </a>';
+            var embedlink = '<iframe height="570" width="100%" frameborder="0" src="' + jsonData[active_tn].meta_objUrl + '"></iframe>'
+            var help_moodle = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=0cKkCRRTC_c">Hjælp til indlejring i Moodle </a>';
             UserMsgBox("body", "<h4>Link kopieret til udklipsholderen!</h4>Indsæt linket i dit LMS eller på din webside<br/>" + help_moodle);
             return embedlink;
 
@@ -88,18 +88,19 @@ function build_tn_grid() {
         HTML += '<div class="col-xs-3 fag_label_container"><h4 class="fag_label_h4"> <span class="label label-primary fag_label"> ' + jd.meta_subject + ' </span></h4 ></div>';
         HTML += '<div class="col-xs-12">';
         HTML += '<h3>' + jd.meta_objTitel + '</h3>';
+
+        HTML += '<div class="link_container"><span class="btn btn-sm btn-info btn-link_kat"><a id="copy_href" href="' + jd.meta_objUrl + '">Åbn objekt </a></span> <span class="btn btn-sm btn-info btn-get_link btn-link_kat"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed btn-link_kat"> Indsæt i LMS </span> </div>';
         HTML += '<p><b>Objekttype: </b><em>';
         for (var o = 0; o < jd.meta_objType.length; o++) {
             HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
         }
         HTML += '</em></p>';
-        HTML += '<div class="link_container"><span class="btn btn-sm btn-info"><a id="copy_href" href="' + jd.meta_objUrl + '"> Se </a></span> <span class="btn btn-sm btn-info btn-get_link"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed"> Indsæt i LMS </span> </div>';
-        HTML += '<p><b>Kursistformål: </b>  ' + jd.meta_studentPurpose + '</p>';
+        HTML += '<p><b>Kursistformål: </b>  <em>' + jd.meta_studentPurpose + '</em></p>';
         HTML += "<div class='col-xs-4 tag_label_container'>"
         for (var u = 0; u < jd.meta_tags.length; u++) {
-            HTML += "<span class='btn btn-info btn-sm tag_label'> # " + jd.meta_tags[u] + "</span>";
+            HTML += "<span class='btn btn-info btn-sm tag_label'>#" + jd.meta_tags[u] + "</span>";
         }
-        HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon glyphicon-exclamation-sign'></span> Se total info om objektet</div></div>";
+        HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon '></span>Se al info om objektet</div></div>";
         HTML += '</div> </div> </div>';
 
         //console.log(HTML);
