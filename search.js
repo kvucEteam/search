@@ -3,7 +3,7 @@ var active_tn;
 $(document).ready(function() {
 
     build_topmenu();
-    build_tn_grid();
+    //build_tn_grid();
 
     $(".btn_overblik").click(function() {
         var num = $(this).index(".btn_overblik");
@@ -44,14 +44,25 @@ $(document).ready(function() {
 
 
 function perform_search() {
+
+    var obj = new Object();
+    var fag_Array = [];
     var search_string = $(".search_textfield").val();
 
     for (var i = 0; i < $(".btn-fag").length; i++) {
         if ($(".btn-fag").eq(i).hasClass("active")) {
-            search_string += " " + $(".btn-fag").eq(i).text();
+            //fag_valgt += " " + ;
+            fag_Array.push($(".btn-fag").eq(i).text());
         }
     }
-    alert("Søgestrengen er: " + search_string);
+
+    obj.sogeord = fag_Array;
+    obj.streng = search_string;
+
+    var jsonString = JSON.stringify(obj);
+    console.log("Søgestrengen er: " + jsonString);
+
+    build_tn_grid();
 
 }
 
@@ -68,10 +79,8 @@ function click_fag(obj) {
         obj.removeClass("btn-info");
     }
 
-}
+    perform_search();
 
-function hent_fag(obj_num) {
-    alert("lad os vise dig alle objk")
 }
 
 function build_tn_grid() {
@@ -117,7 +126,6 @@ function build_topmenu() {
         $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
     }
 }
-
 
 
 function build_overview(indeks) {
