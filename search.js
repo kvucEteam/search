@@ -1,14 +1,11 @@
-
-
-
-var srvLiveState = false;  // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
+var srvLiveState = false; // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
 
 
 console.log('##############################################################\n' +
-            '\n' + 
-            '               search.js er: ' + ((srvLiveState)? 'LIVE!' : 'OFF LINE!') + '\n' + 
-            '\n' + 
-            '##############################################################');
+    '\n' +
+    '               search.js er: ' + ((srvLiveState) ? 'LIVE!' : 'OFF LINE!') + '\n' +
+    '\n' +
+    '##############################################################');
 
 
 var active_tn;
@@ -43,6 +40,13 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on("keypress", function(e) {
+        // use e.which
+        if (e.keyCode == 13) {
+            perform_search();
+        }
+    });
+
 });
 
 
@@ -53,14 +57,14 @@ function perform_search() {
     var search_string = $(".search_textfield").val();
 
     for (var i = 0; i < $(".btn-fag").length; i++) {
-        if ($(".btn-fag").eq(i).hasClass("active")) {
+        if ($(".btn-fag").eq(i).hasClass("btn-primary")) {
             //fag_valgt += " " + ;
             fag_Array.push($(".btn-fag").eq(i).text());
         }
     }
 
     // obj.sogeord = fag_Array;                 // Commented out by THAN 17-01-2017
-    obj.fag = fag_Array;                        // Added by THAN 17-01-2017
+    obj.fag = fag_Array; // Added by THAN 17-01-2017
     obj.streng = search_string;
 
     var jsonString = JSON.stringify(obj);
@@ -71,11 +75,11 @@ function perform_search() {
     //                      THANs CODE:
     //==============================================================================================================
 
-    if (srvLiveState) { 
+    if (srvLiveState) {
 
         var cc = Object.create(core_CLASS);
 
-        successCallBack = function(result){
+        successCallBack = function(result) {
             // alert('result: SUCCESS');
 
             var json = JSON.parse(cc.ajaxUnwrap(result));
@@ -83,17 +87,17 @@ function perform_search() {
 
             jsonData = json;
 
-            $('.tn_container').html('');  // Clear container
+            $('.tn_container').html(''); // Clear container
 
-            build_tn_grid();              // Insert new objects
+            build_tn_grid(); // Insert new objects
 
         }
-        errorCallBack = function(result){
+        errorCallBack = function(result) {
             alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
         }
 
         console.log('srvCall - jsonString: ' + jsonString);
-        cc.srvCall('../objectSearch/index.php', {searchObject: jsonString}, successCallBack, errorCallBack, 'html');   // <-----  OK
+        cc.srvCall('../objectSearch/index.php', { searchObject: jsonString }, successCallBack, errorCallBack, 'html'); // <-----  OK
         // cc.srvCall('../objectSearch/index.php', {searchObject: JSON.stringify({fag:["PSYKOLOGI","TYSK"], streng: 'hej med dig'}) }, successCallBack, errorCallBack, 'html');   // <-----  TEST
 
     } else {
@@ -111,12 +115,12 @@ function click_fag(obj) {
     var indeks = obj.index(".btn-fag");
     //hent_fag(indeks);
     console.log(indeks);
-    if (obj.hasClass("active")) {
+    if (obj.hasClass("btn-primary")) {
         console.log("has Class")
-        obj.removeClass("btn-primary active");
+        obj.removeClass("btn-primary");
         obj.addClass("btn-info");
     } else {
-        obj.addClass("btn-primary active");
+        obj.addClass("btn-primary");
         obj.removeClass("btn-info");
     }
 
@@ -134,27 +138,27 @@ function build_tn_grid() {
 
 
         // var HTML = '<div class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';                            // Commented out by THAN 20-01-2017
-        var HTML = '<div id="objId_'+jd.objId+'" class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';       // Added by THAN 20-01-2017
+        var HTML = '<div id="objId_' + jd.objId + '" class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';       // Added by THAN 20-01-2017
         HTML += '<div class="thumbnail col-xs-12">';
         HTML += '<div class="thumb_img_container col-xs-9">';
-        HTML += '<img class="img-responsive" src="' + jd.meta_imgUrl + '" alt="...">';
-        HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"></a></div>';
-        HTML += '<div class="col-xs-3 fag_label_container"><h4 class="fag_label_h4"> <span class="label label-primary fag_label"> ' + jd.meta_subject + ' </span></h4 ></div>';
+        //HTML += '';
+        HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"><img class="img-responsive" src="' + jd.meta_imgUrl + '" alt="..."></a></div>';
+        HTML += '<div class="col-xs-3 fag_label_container"><span class="btn btn-primary">' + jd.meta_subject + ' </span></div>';
         HTML += '<div class="col-xs-12">';
         HTML += '<h3>' + jd.meta_objTitel + '</h3>';
 
         HTML += '<div class="link_container"><span class="btn btn-sm btn-info btn-link_kat"><a id="copy_href" href="' + jd.meta_objUrl + '">Åbn objekt </a></span> <span class="btn btn-sm btn-info btn-get_link btn-link_kat"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed btn-link_kat"> Indsæt i LMS </span> </div>';
-        HTML += '<p><b>Objekttype: </b><em>';
+        HTML += '<p><b>Objekttype: </b>';
         for (var o = 0; o < jd.meta_objType.length; o++) {
             HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
         }
-        HTML += '</em></p>';
-        HTML += '<p><b>Kursistformål: </b>  <em>' + jd.meta_studentPurpose + '</em></p>';
+        HTML += '</p>';
+        HTML += '<p><b>Kursistformål: </b>  ' + jd.meta_studentPurpose + '</p>';
         HTML += "<div class='col-xs-4 tag_label_container'>"
         for (var u = 0; u < jd.meta_tags.length; u++) {
             HTML += "<span class='btn btn-info btn-sm tag_label'>#" + jd.meta_tags[u] + "</span>";
         }
-        HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon '></span>Se al info om objektet</div></div>";
+        HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon '></span>Læs om objektet</div></div>";
         HTML += '</div> </div> </div>';
 
         //console.log(HTML);
@@ -171,16 +175,16 @@ function build_tn_grid() {
     //                      THANs CODE:
     //==============================================================================================================
 
-    $( document ).on('click', ".tag_label", function(event){     // Added by THAN 20-01-2017
+    $(document).on('click', ".tag_label", function(event) { // Added by THAN 20-01-2017
 
         if (srvLiveState) {
 
             var cc = Object.create(core_CLASS);
 
             var tag = $(this).text().replace('#', '').trim();;
-            console.log('tag_label - tag 1: ' + tag); 
+            console.log('tag_label - tag 1: ' + tag);
 
-            successCallBack = function(result){
+            successCallBack = function(result) {
                 // alert('result: SUCCESS');
 
                 var json = JSON.parse(cc.ajaxUnwrap(result));
@@ -188,17 +192,17 @@ function build_tn_grid() {
 
                 jsonData = json;
 
-                $('.tn_container').html('');  // Clear container
+                $('.tn_container').html(''); // Clear container
 
-                build_tn_grid();              // Insert new objects
+                build_tn_grid(); // Insert new objects
 
             }
-            errorCallBack = function(result){
+            errorCallBack = function(result) {
                 alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
             }
 
             // cc.srvCall('../objectSearch/index.php', {searchObject: jsonString}, successCallBack, errorCallBack, 'html');   // <-----  OK
-            cc.srvCall('../objectSearch/index.php', {searchObject_byTag: JSON.stringify({tag: tag}) }, successCallBack, errorCallBack, 'html');   // <-----  TEST
+            cc.srvCall('../objectSearch/index.php', { searchObject_byTag: JSON.stringify({ tag: tag }) }, successCallBack, errorCallBack, 'html'); // <-----  TEST
         }
 
     });
@@ -248,11 +252,11 @@ function masonry() {
         $(this).css("z-index", ny_z);
     });
 
-   
+
 }
 
 function build_topmenu() {
-    var fag_Array = ["KS", "KEMI", "HISTORIE", "DANSK", "TYSK", "ENGELSK", "SPANSK", "PSYKOLOGI", "TYSK"];
+    var fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK", "TYSK"];
 
     for (var i = 0; i < fag_Array.length; i++) {
         $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
@@ -263,64 +267,77 @@ function build_topmenu() {
 function build_overview(indeks) {
     var jd = jsonData[indeks];
 
-    var HTML = "<h2>Overblik over læringsobjekt - " + jd.meta_objTitel + "</h2>";
+    var HTML = "<div class='content_wrapper'><h2>" + jd.meta_objTitel + "</h2>";
     HTML += "<img src='" + jd.meta_imgUrl + "' class='img-responsive cropped'/>";
-    HTML += '<h4>Detaljer om objektet: </h4>';
-    HTML += '<p><b>Objekttype: </b><em>';
+    HTML += '<p class="objektinfo"><b>Objekttype: </b>';
     for (var o = 0; o < jd.meta_objType.length; o++) {
-        HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+        if (o > 0) {
+            HTML += jd.meta_objType[o].toLowerCase() + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+        } else {
+            HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+        }
     }
-    HTML += '</em></p>';
-    HTML += "<p><b>URL til objektet: </b><a href='" + jd.meta_objUrl + "'>" + jd.meta_objUrl + "</a></p>";
-    HTML += "<p><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
+    HTML += '</p>';
+    HTML += "<p class='objektinfo'><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
 
-    HTML += "<p><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
-    HTML += "<p><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
-    HTML += '<p><b>Læringsmål: </b><em>';
+    HTML += "<p class='objektinfo'><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
+    HTML += "<p class='objektinfo'><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
+    HTML += '<p class="objektinfo"><b>Læringsmål: </b><ul>';
     for (var p = 0; p < jd.meta_teachingPurpose.length; p++) {
-        HTML += jd.meta_teachingPurpose[p] + ((p == jd.meta_teachingPurpose.length - 1) ? '' : ', ');
+        HTML += '<li>' + jd.meta_teachingPurpose[p] + ((p == jd.meta_teachingPurpose.length - 1) ? '' : '</li>');
     }
-    HTML += '</em></p>';
-    HTML += '<p><b>Aktivitetsform: </b><em>';
+    HTML += '</ul></p>';
+    HTML += '<p class="objektinfo"><b>Aktivitetsform: </b>';
     for (var o = 0; o < jd.meta_activityForm.length; o++) {
-        HTML += jd.meta_activityForm[o] + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+        if (o > 0) {
+            HTML += jd.meta_activityForm[o].toLowerCase() + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+        } else {
+            HTML += jd.meta_activityForm[o] + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+        }
     }
-    HTML += '</em></p>';
+    HTML += '</p>';
 
-    HTML += '<p><b>Tags: </b><em>';
+    HTML += '<p class="objektinfo"><b>Tags: </b>';
     for (var o = 0; o < jd.meta_tags.length; o++) {
-        HTML += jd.meta_tags[o] + ((o == jd.meta_tags.length - 1) ? '' : ', ');
+        HTML += '#' + jd.meta_tags[o] + ((o == jd.meta_tags.length - 1) ? '' : ' ');
     }
-    HTML += '</em></p>';
+    HTML += '</p>';
 
-    HTML += '<p><b>Niveau: </b><em>';
+    HTML += '<p class="objektinfo"><b>Niveau: </b>';
     for (var o = 0; o < jd.meta_level.length; o++) {
         HTML += jd.meta_level[o] + ((o == jd.meta_level.length - 1) ? '' : ', ');
     }
-    HTML += '</em></p>';
+    HTML += '</p>';
 
-    HTML += '<p><b>Tema: </b><em>';
+    HTML += '<p class="objektinfo"><b>Tema: </b>';
     for (var o = 0; o < jd.meta_theme.length; o++) {
         HTML += jd.meta_theme[o] + ((o == jd.meta_theme.length - 1) ? '' : ', ');
     }
-    HTML += '</em></p>';
-    HTML += "<p><b>Varighed: </b>" + jd.meta_duration + "</p>";
-    HTML += "<p><b>Sværhedsgrad: </b>" + jd.meta_difficulty + "</p>";
-    HTML += '<p><b>Form: </b><em>';
+    HTML += '</p>';
+    HTML += "<p class='objektinfo'><b>Varighed: </b>" + jd.meta_duration + "</p>";
+    HTML += "<p class='objektinfo'><b>Sværhedsgrad: </b>" + jd.meta_difficulty + "</p>";
+    HTML += '<p class="objektinfo"><b>Form: </b>';
     for (var o = 0; o < jd.meta_form.length; o++) {
         HTML += jd.meta_form[o] + ((o == jd.meta_form.length - 1) ? '' : ', ');
     }
-    HTML += '</em></p>';
-    HTML += "<p><b>Medietype: </b>" + jd.meta_media_type + "</p>";
+    HTML += '</p>';
+HTML += '<p class="objektinfo"><b>Type: </b>';
+    for (var o = 0; o < jd.meta_media_type.length; o++) {
+        if (o > 0) {
+            HTML += jd.meta_media_type[o].toLowerCase() + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
+        } else {
+            HTML += jd.meta_media_type[o] + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
+        }
+    }
 
-    HTML += '<p><b>Forfattere: </b><p>';
+    HTML += '<p class="objektinfo"><b>Forfattere: </b><br/>';
     for (var o = 0; o < jd.meta_author.length; o++) {
         console.log(jd.meta_author[o].firstname);
         HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname + " - ";
         HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
 
     }
-    HTML += '</em></p>';
+    HTML += '</p></div>';
 
 
     UserMsgBox("body", HTML);
