@@ -1,16 +1,3 @@
-
-
-
-var srvLiveState = false;  // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
-
-
-console.log('##############################################################\n' +
-            '\n' + 
-            '               search.js er: ' + ((srvLiveState)? 'LIVE!' : 'OFF LINE!') + '\n' + 
-            '\n' + 
-            '##############################################################');
-
-
 var active_tn;
 
 $(document).ready(function() {
@@ -59,51 +46,13 @@ function perform_search() {
         }
     }
 
-    // obj.sogeord = fag_Array;                 // Commented out by THAN 17-01-2017
-    obj.fag = fag_Array;                        // Added by THAN 17-01-2017
+    obj.sogeord = fag_Array;
     obj.streng = search_string;
 
     var jsonString = JSON.stringify(obj);
     console.log("Søgestrengen er: " + jsonString);
 
-
-    //==============================================================================================================
-    //                      THANs CODE:
-    //==============================================================================================================
-
-    if (srvLiveState) { 
-
-        var cc = Object.create(core_CLASS);
-
-        successCallBack = function(result){
-            // alert('result: SUCCESS');
-
-            var json = JSON.parse(cc.ajaxUnwrap(result));
-            console.log('perform_search - successCallBack - json: ' + JSON.stringify(json));
-
-            jsonData = json;
-
-            $('.tn_container').html('');  // Clear container
-
-            build_tn_grid();              // Insert new objects
-
-        }
-        errorCallBack = function(result){
-            alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
-        }
-
-        console.log('srvCall - jsonString: ' + jsonString);
-        cc.srvCall('../objectSearch/index.php', {searchObject: jsonString}, successCallBack, errorCallBack, 'html');   // <-----  OK
-        // cc.srvCall('../objectSearch/index.php', {searchObject: JSON.stringify({fag:["PSYKOLOGI","TYSK"], streng: 'hej med dig'}) }, successCallBack, errorCallBack, 'html');   // <-----  TEST
-
-    } else {
-        build_tn_grid();
-    }
-
-    //==============================================================================================================
-
-
-    // build_tn_grid();
+    build_tn_grid();
 
 }
 
@@ -133,8 +82,7 @@ function build_tn_grid() {
         console.log(jsonData[i].meta_imgUrl);
 
 
-        // var HTML = '<div class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';                            // Commented out by THAN 20-01-2017
-        var HTML = '<div id="objId_'+jd.objId+'" class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';       // Added by THAN 20-01-2017
+        var HTML = '<div class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';
         HTML += '<div class="thumbnail col-xs-12">';
         HTML += '<div class="thumb_img_container col-xs-9">';
         HTML += '<img class="img-responsive" src="' + jd.meta_imgUrl + '" alt="...">';
@@ -162,49 +110,10 @@ function build_tn_grid() {
 
     }
 
-    // $(".tag_label").click(function() {       // Commented out by THAN 20-01-2017
-    //     console.log($(this).html());
-    //     //click_tag($(this));
-    // });
-
-    //==============================================================================================================
-    //                      THANs CODE:
-    //==============================================================================================================
-
-    $( document ).on('click', ".tag_label", function(event){     // Added by THAN 20-01-2017
-
-        if (srvLiveState) {
-
-            var cc = Object.create(core_CLASS);
-
-            var tag = $(this).text().replace('#', '').trim();;
-            console.log('tag_label - tag 1: ' + tag); 
-
-            successCallBack = function(result){
-                // alert('result: SUCCESS');
-
-                var json = JSON.parse(cc.ajaxUnwrap(result));
-                console.log('tag_label - successCallBack - json: ' + JSON.stringify(json));
-
-                jsonData = json;
-
-                $('.tn_container').html('');  // Clear container
-
-                build_tn_grid();              // Insert new objects
-
-            }
-            errorCallBack = function(result){
-                alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
-            }
-
-            // cc.srvCall('../objectSearch/index.php', {searchObject: jsonString}, successCallBack, errorCallBack, 'html');   // <-----  OK
-            cc.srvCall('../objectSearch/index.php', {searchObject_byTag: JSON.stringify({tag: tag}) }, successCallBack, errorCallBack, 'html');   // <-----  TEST
-        }
-
+    $(".tag_label").click(function() {
+        console.log($(this).html());
+        //click_tag($(this));
     });
-
-    //==============================================================================================================
-
     $(".btn_overblik").click(function() {
         var num = $(this).index(".btn_overblik");
         build_overview(num);
