@@ -5,22 +5,12 @@ $(document).ready(function() {
     build_topmenu();
     //build_tn_grid();
 
-    $(".btn_overblik").click(function() {
-        var num = $(this).index(".btn_overblik");
-        build_overview(num);
-    });
-
     $(".btn-search").click(function() {
         perform_search();
     });
 
     $(".btn-fag").click(function() {
         click_fag($(this));
-    });
-
-    $(".thumbnail").click(function() {
-        active_tn = $(this).index(".thumbnail");
-        console.log(active_tn);
     });
 
     var clipboard = new Clipboard('.btn-get_link', {
@@ -84,6 +74,9 @@ function click_fag(obj) {
 }
 
 function build_tn_grid() {
+
+    $(".tn_container").html("");
+
     for (var i = 0; i < jsonData.length; i++) {
         var jd = jsonData[i];
         console.log(jsonData[i].meta_imgUrl);
@@ -114,9 +107,57 @@ function build_tn_grid() {
 
         //console.log(HTML);
         $(".tn_container").append(HTML);
+
     }
 
+    $(".tag_label").click(function() {
+        console.log($(this).html());
+        //click_tag($(this));
+    });
+    $(".btn_overblik").click(function() {
+        var num = $(this).index(".btn_overblik");
+        build_overview(num);
+    });
 
+    $(".thumbnail").click(function() {
+        active_tn = $(this).index(".thumbnail");
+        console.log(active_tn);
+    });
+
+    masonry();
+
+
+
+}
+
+function masonry() {
+    console.log("masonry please!");
+    var $container = $('.tn_container');
+    $container.imagesLoaded(function() {
+        $container.masonry({
+            itemSelector: '.post-box',
+            columnWidth: '.post-box',
+            transitionDuration: 0
+        });
+
+    });
+
+
+    // init Masonry after all images have loaded
+
+
+
+    if ($(window).width() > 560) {
+        var overskrift_height = $(".container_overskrift").height();
+        $(".tn_container").css("margin-top", overskrift_height);
+    }
+
+    $(".post-box").each(function() {
+        var ny_z = $(".post-box").length - $(this).index();
+        $(this).css("z-index", ny_z);
+    });
+
+   
 }
 
 function build_topmenu() {
