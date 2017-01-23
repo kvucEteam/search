@@ -1,4 +1,6 @@
-var srvLiveState = false; // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
+// var srvLiveState = false; // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
+var url = window.location.href;
+var srvLiveState = ((url.indexOf('localhost:8080') === -1) && (url.indexOf('127.0.0.1:8080') === -1))? true : false;
 
 
 console.log('##############################################################\n' +
