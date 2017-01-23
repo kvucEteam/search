@@ -1,7 +1,7 @@
 
 
 
-var srvLiveState = false;  // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
+var srvLiveState = true;  // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
 
 
 console.log('##############################################################\n' +
