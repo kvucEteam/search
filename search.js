@@ -1,4 +1,4 @@
-var srvLiveState = false; // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
+var srvLiveState = true; // <-----------  TURN SERVER LIVE STATE ON/OFF = true/false.    Added by THAN 20-01-2017
 
 
 console.log('##############################################################\n' +
@@ -34,7 +34,7 @@ $(document).ready(function() {
         text: function() {
             var embedlink = '<iframe height="570" width="100%" frameborder="0" src="' + jsonData[active_tn].meta_objUrl + '"></iframe>'
             var help_moodle = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=0cKkCRRTC_c">Hjælp til indlejring i Moodle </a>';
-            UserMsgBox("body", "<h4>Link kopieret til udklipsholderen!</h4>Indsæt linket i dit LMS eller på din webside<br/>" + help_moodle);
+            UserMsgBox("body", "<h4>Link kopieret til udklipsholderen!</h4>Indlejringskoden er nu kopieret til din udklipsholder, og du kan indsætte linket i dit LMS eller på din webside.<br/>" + help_moodle);
             return embedlink;
 
         }
@@ -51,6 +51,8 @@ $(document).ready(function() {
 
 
 function perform_search() {
+
+    $(".tn_container").html("");
 
     var obj = new Object();
     var fag_Array = [];
@@ -86,8 +88,6 @@ function perform_search() {
             console.log('perform_search - successCallBack - json: ' + JSON.stringify(json));
 
             jsonData = json;
-
-            $('.tn_container').html(''); // Clear container
 
             build_tn_grid(); // Insert new objects
 
@@ -130,7 +130,9 @@ function click_fag(obj) {
 
 function build_tn_grid() {
 
-    $(".tn_container").html("");
+    console.log("build_tn_grid");
+
+
 
     for (var i = 0; i < jsonData.length; i++) {
         var jd = jsonData[i];
@@ -219,44 +221,35 @@ function build_tn_grid() {
         console.log(active_tn);
     });
 
-    masonry();
 
 
 
-}
+    $('.tn_container').masonry('destroy');
 
-function masonry() {
-    console.log("masonry please!");
-    var $container = $('.tn_container');
-    $container.imagesLoaded(function() {
-        $container.masonry({
-            itemSelector: '.post-box',
-            columnWidth: '.post-box',
-            transitionDuration: 0
-        });
-
+    $('.tn_container').masonry({
+        itemSelector: '.post-box',
+        columnWidth: '.post-box',
+        transitionDuration: 0
     });
+
+
+
+
+
+
+
 
 
     // init Masonry after all images have loaded
 
 
 
-    if ($(window).width() > 560) {
-        var overskrift_height = $(".container_overskrift").height();
-        $(".tn_container").css("margin-top", overskrift_height);
-    }
-
-    $(".post-box").each(function() {
-        var ny_z = $(".post-box").length - $(this).index();
-        $(this).css("z-index", ny_z);
-    });
 
 
 }
 
 function build_topmenu() {
-    var fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK", "TYSK"];
+    var fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK", "TYSK"];
 
     for (var i = 0; i < fag_Array.length; i++) {
         $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
@@ -321,7 +314,7 @@ function build_overview(indeks) {
         HTML += jd.meta_form[o] + ((o == jd.meta_form.length - 1) ? '' : ', ');
     }
     HTML += '</p>';
-HTML += '<p class="objektinfo"><b>Type: </b>';
+    HTML += '<p class="objektinfo"><b>Type: </b>';
     for (var o = 0; o < jd.meta_media_type.length; o++) {
         if (o > 0) {
             HTML += jd.meta_media_type[o].toLowerCase() + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
