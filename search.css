@@ -139,6 +139,34 @@ a:hover {
     text-decoration: none;
 }
 
-.content_wrapper{
+.content_wrapper {
     padding: 0px 130px 0px 40px;
+}
+
+.search_loader {
+    margin-top: 40%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blurred {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.closeinput {
+    margin-left: -24px;
+    border-radius: 7px;
+    cursor: pointer;
+    color: #b1b1b1;
+}
+
+.search_container {
+    margin-bottom:20px;
 }

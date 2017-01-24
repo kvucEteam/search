@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../library/css/styles.css" type="text/css" />
     <link rel="stylesheet" href="search.css" type="text/css" />
+    <link rel="stylesheet" href="promotion/extra_carousel_styling.css" type="text/css" />
+    <link rel="stylesheet" href="promotion/promotion.css" type="text/css" />
 </head>
 
 <body>
@@ -17,15 +19,18 @@
         <h1>Søg på vucdigital.dk</h1>
         <div class="fag_btn_container">
         </div>
-        <div class="seach_container">
-            <input type="text" name="search" class="input_text search_textfield" placeholder="Søg på vucdigital.dk">
-            <input class="btn btn-primary btn-search" type="submit" value="SØG">
+        <div class="search_container">
+            <div class="inner_inputcontainer">
+                <input type="text" name="search" class="input_text search_textfield" placeholder="Søg på vucdigital.dk">
+                <span class="closeinput glyphicon glyphicon-remove"></span>
+                <input class="btn btn-primary btn-search" type="submit" value="SØG">
+            </div>
         </div>
         <div class="tn_container">
         </div>
+        <div id="vucCarousel">
+        </div>
     </div>
-
-
     <script src="../library/vendor_scripts.js"></script>
     <script src="../library/custom_scripts.js"></script>
     <script src="../library/js/masonry_min.js"></script>
@@ -34,6 +39,14 @@
     $(document).ready(function() {
         one_line_footer();
         getAjaxData("GET", "json/data.json", false, "json");
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        getAjaxData("GET", "../promotion/json/carouselData.json", false, "json");
+
+        var cObj = Object.create(carouselClass);
+        $('#vucCarousel').html(cObj.init(jsonData));
     });
     </script>
     <script src="https://www.vucdigital.dk/core/js/core.js"></script>
