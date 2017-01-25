@@ -339,13 +339,44 @@
 
  }
 
- function build_topmenu() {
-     var fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"];
+    function build_topmenu() {
 
-     for (var i = 0; i < fag_Array.length; i++) {
-         $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
-     }
- }
+        var fag_Array;
+
+        if (srvLiveState) {
+            var cc = Object.create(core_CLASS);
+            successCallBack = function(result) {
+                // alert('result: SUCCESS');
+
+                var json = JSON.parse(cc.ajaxUnwrap(result));
+                console.log('tag_label - successCallBack - json: ' + JSON.stringify(json));
+
+                fag_Array = json;
+
+                for (var i = 0; i < fag_Array.length; i++) {
+                    $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+                }
+
+                $(".btn-fag").click(function() {  // We need to set event-listeners after we add btn-fag:
+                    click_fag($(this));
+                });
+            }
+            errorCallBack = function(result) {
+                alert('FEJL: Serveren kunne ikke hente fag fra databasen!');
+            }
+
+            cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html'); 
+        } else {
+            fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"];
+
+            for (var i = 0; i < fag_Array.length; i++) {
+                $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+            }
+        }
+
+        
+
+    }
 
 
  function build_overview(indeks) {
