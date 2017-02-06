@@ -365,6 +365,7 @@
 
      var fag_Array;
 
+<<<<<<< HEAD
      if (srvLiveState) {
          var cc = Object.create(core_CLASS);
          successCallBack = function(result) {
@@ -395,6 +396,42 @@
              $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
          }
      }
+=======
+        // IMPORTANT: 
+        // The following has been commented out since Safari (and some versions of IE11, perhaps due to some individual browser settings) does not fetch the subjects from DB correctly
+        // ===============================
+        // if (srvLiveState) {
+        //     var cc = Object.create(core_CLASS);
+        //     successCallBack = function(result) {
+        //         // alert('result: SUCCESS');
+
+        //         var json = JSON.parse(cc.ajaxUnwrap(result));
+        //         console.log('tag_label - successCallBack - json: ' + JSON.stringify(json));
+
+        //         fag_Array = json;
+
+        //         for (var i = 0; i < fag_Array.length; i++) {
+        //             $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+        //         }
+
+        //         $(".btn-fag").click(function() {  // We need to set event-listeners after we add btn-fag:
+        //             click_fag($(this));
+        //         });
+        //     }
+        //     errorCallBack = function(result) {
+        //         alert('FEJL: Serveren kunne ikke hente fag fra databasen!');
+        //     }
+
+        //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html'); 
+        // } else {
+        //     // fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"]; // Commented out by THAN 30/1-2017
+            fag_Array = ["Biologi","Dansk","Engelsk","Geografi","Kemi","KS"]; // Current subjects - Added by THAN 30/1-2017
+
+            for (var i = 0; i < fag_Array.length; i++) {
+                $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+            }
+        // }
+>>>>>>> d82eb5b2e3bfef2aeb3f9aef1e0f0b59628b4461
 
 
 
