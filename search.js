@@ -58,6 +58,8 @@
          }
      });
 
+     getRequestedObjectsByUrl();  // Set all visual perameters according to URL perameters and performs search. Added by THAN 06-02-2017.
+
  });
 
 
@@ -365,7 +367,6 @@
 
      var fag_Array;
 
-<<<<<<< HEAD
      if (srvLiveState) {
          var cc = Object.create(core_CLASS);
          successCallBack = function(result) {
@@ -396,7 +397,7 @@
              $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
          }
      }
-=======
+
         // IMPORTANT: 
         // The following has been commented out since Safari (and some versions of IE11, perhaps due to some individual browser settings) does not fetch the subjects from DB correctly
         // ===============================
@@ -431,8 +432,6 @@
                 $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
             }
         // }
->>>>>>> d82eb5b2e3bfef2aeb3f9aef1e0f0b59628b4461
-
 
 
  }
@@ -516,6 +515,54 @@
 
      UserMsgBox("body", HTML);
  }
+
+
+function getRequestedObjectsByUrl() {
+
+    if ((typeof(oneTimeUrlCheck) === 'undefined') && (srvLiveState)){
+
+        window.oneTimeUrlCheck = 1;
+
+        console.log('search - URL check - getUrlVars: ' + JSON.stringify(getUrlVars())); // <----- Check af getUrlVars() fra shared functions: denne giver kun navnet på variablerne, og ikke de tilhørende værdier også.
+
+        var UlrVarObj = {};   // Define UlrVarObj
+        UlrVarObj = ReturnURLPerameters(UlrVarObj);  // Get URL file perameter. 
+
+        console.log('search - URL check - UlrVarObj: ' + JSON.stringify(UlrVarObj));
+
+        // .fag_btn_container
+        if (typeof(UlrVarObj.fag) !== 'undefined') {
+            $( ".btn-fag" ).each(function( index, element ) {
+                if (UlrVarObj.fag.toLowerCase().indexOf($(element).text().toLowerCase()) !== -1) {
+                    $(element).addClass("btn-primary").removeClass("btn-info");
+                }
+            });
+        }
+
+        if (typeof(UlrVarObj.q) !== 'undefined') {
+            $(".search_textfield").val(UlrVarObj.q.replace(/\+/g, ' '));
+        }
+
+        perform_search();
+    }
+} 
+
+
+function ReturnURLPerameters(UlrVarObj){
+    var UrlVarStr = window.location.search.substring(1);
+    console.log("ReturnURLPerameters - UrlVarStr: " + UrlVarStr);
+    var UrlVarPairArray = decodeURIComponent(UrlVarStr).split("&");  // decodeURIComponent handles %26" for the char "&" AND "%3D" for the char "=".
+    console.log("ReturnURLPerameters - UrlVarPairArray: " + UrlVarPairArray);
+    for (var i in UrlVarPairArray){
+        var UrlVarSubPairArray = UrlVarPairArray[i].split("=");  // & = %3D
+        if (UrlVarSubPairArray.length == 2){
+            UlrVarObj[UrlVarSubPairArray[0]] = UrlVarSubPairArray[1];
+        }
+    }
+    console.log("ReturnURLPerameters - UlrVarObj: " + JSON.stringify( UlrVarObj ));
+    return UlrVarObj;
+}
+
 
  /*objId: null, // "objekt id",             TYPE: integer, objektets id ift. tabellen over alle objekter.
      meta_objType: [], // "objekt type",           TYPE: array of strings, feks: ["Markeringsøvelse", "Interaktiv model", ...]
