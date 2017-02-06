@@ -519,16 +519,18 @@
 
 function getRequestedObjectsByUrl() {
 
-    if ((typeof(oneTimeUrlCheck) === 'undefined') && (srvLiveState)){
+    var UlrVarObj = {};   // Define UlrVarObj
+    UlrVarObj = ReturnURLPerameters(UlrVarObj);  // Get URL file perameter. 
+    console.log('search - URL check - UlrVarObj 1: ' + JSON.stringify(UlrVarObj));
+
+    // If the script is on the live server AND "fag" OR "q" is set, then.... 
+    if ((typeof(oneTimeUrlCheck) === 'undefined') && (srvLiveState) && ((typeof(UlrVarObj.fag) !== 'undefined') || (typeof(UlrVarObj.q) !== 'undefined'))){
 
         window.oneTimeUrlCheck = 1;
 
         console.log('search - URL check - getUrlVars: ' + JSON.stringify(getUrlVars())); // <----- Check af getUrlVars() fra shared functions: denne giver kun navnet på variablerne, og ikke de tilhørende værdier også.
 
-        var UlrVarObj = {};   // Define UlrVarObj
-        UlrVarObj = ReturnURLPerameters(UlrVarObj);  // Get URL file perameter. 
-
-        console.log('search - URL check - UlrVarObj: ' + JSON.stringify(UlrVarObj));
+        console.log('search - URL check - UlrVarObj 2: ' + JSON.stringify(UlrVarObj));
 
         // .fag_btn_container
         if (typeof(UlrVarObj.fag) !== 'undefined') {
