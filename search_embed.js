@@ -29,5 +29,10 @@ function linktoSearchSite() {
 
     var searchURL = "https://www.vucdigital.dk/search?q=" + search_string;
 
-    window.location.href = searchURL;
+    //window.location.href = searchURL;
+
+    window.open(
+        searchURL,
+        '_blank' // <- This is what makes it open in a new window.
+    );
 }
