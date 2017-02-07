@@ -426,11 +426,11 @@
         //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html'); 
         // } else {
         //     // fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"]; // Commented out by THAN 30/1-2017
-            fag_Array = ["Biologi","Dansk","Engelsk","Geografi","Kemi","KS"]; // Current subjects - Added by THAN 30/1-2017
+            // fag_Array = ["Biologi","Dansk","Engelsk","Geografi","Kemi","KS"]; // Current subjects - Added by THAN 30/1-2017
 
-            for (var i = 0; i < fag_Array.length; i++) {
-                $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
-            }
+            // for (var i = 0; i < fag_Array.length; i++) {
+            //     $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+            // }
         // }
 
 
