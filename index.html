@@ -16,8 +16,22 @@
 </head>
 
 <body>
+    <div class="top_header">
+        <div class="container-fluid">
+            <div class="innner_logo">
+                <img class="v_logo" src="img/V_primary_active.svg">
+                <h3 class="txt_container">
+                    <div class="col-xs-6">
+                        <span class="logo_text">vucdigital.dk</span>
+                    </div>
+                    <div class="col-xs-6 menu ">
+                        <span> <a href="https://www.vucdigital.dk">FORSIDE</a></span> | <span> <a href="www.vucdigital.dk">OM VUCDIGITAL</a></span>
+                    </div>
+                </h3>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid container_main">
-        <h1>Søg på vucdigital.dk</h1>
         <div class="fag_btn_container">
         </div>
         <div class="search_container">
@@ -181,26 +195,16 @@
                 </div>
             </div>
         </div>
-        <h3 class="eks_header">Eksempler på e-læringsobjekter:</h3>
-        <div id="vucCarousel">
-        </div>
     </div>
+    <div class="footer_search"></div>
     <script src="../library/vendor_scripts.js"></script>
     <script src="../library/custom_scripts.js"></script>
     <script src="../library/js/masonry_min.js"></script>
     <script src="../library/js/visningssite.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        one_line_footer();
+        //one_line_footer();
         getAjaxData("GET", "json/data.json", false, "json");
-    });
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        getAjaxData("GET", "../promotion/json/carouselData.json", false, "json");
-
-        var cObj = Object.create(carouselClass);
-        $('#vucCarousel').html(cObj.init(jsonData));
     });
     </script>
     <script src="https://www.vucdigital.dk/core/js/core.js"></script>

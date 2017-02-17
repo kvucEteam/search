@@ -16,42 +16,64 @@
 </head>
 
 <body>
-    <div class="container-fluid container_main">
-        <h1>Om os på vucdigital.dk</h1>
-        <div class="col-sm-12">
-            <!-- 1 -->
-            <div class="XXX_thumbnail">
-                <h1>Hvem er vi? </h1>
-                <p>
-                    Vucdigital er et produktionsfællesskab mellem otte VUC’er: HF & VUC København Syd, HF & VUC Nordsjælland, Københavns VUC (KVUC), Vestegnen HF & VUC, Voksenuddannelsescenter Frederiksberg (VUF), VUC Aarhus, VUC Roskilde, VUC Storstrøm.
-                </p>
-                <p>
-                    Disse digitale læringsmaterialer er til brug på de deltagende voksenuddannelsescentre, og målsætningen er:
-                </p>
-                <ul>
-                    <li>at understøtte individualisering & differentiering af undervisningen. Det vil sige læring efter den enkeltes tempo og niveau, uafhængigt af tid og rum. </li>
-                    <li>at imødekomme fremtidige behov for nye materialer og læringsformer, der er målrettet VUC’s kursister og VUC-sektorens undervisning.</li>
-                    <li>at understøtte et lærerbehov, med plukbare og fleksible materialer, der er relevante og motiverende. </li>
-                    <li>at skabe øget videndeling omkring nye undervisningsformer og materialer.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <h3 class="eks_header">Eksempler på e-læringsobjekter:</h3>
-            <div id="vucCarousel">
+    <div class="top_header">
+        <div class="container-fluid">
+            <div class="innner_logo">
+                <img class="v_logo" src="img/V_primary_active.svg">
+                <h3 class="txt_container">
+                    <div class="col-xs-6">
+                        <span class="logo_text">vucdigital.dk</span>
+                    </div>
+                    <div class="col-xs-6 menu ">
+                        <span><span>Til forsiden</span> | <span>Om vucdigital</span>
+                    </div>
+                </h3>
             </div>
         </div>
     </div>
+    <div class="container-fluid container_main">
+        <h1>Om vucdigital.dk</h1>
+        <div class="col-sm-12 col-md-7">
+            <!-- 1 -->
+            <p>
+                Vucdigital er et produktionsfællesskab mellem otte VUC’er: HF & VUC København Syd, HF & VUC Nordsjælland, Københavns VUC (KVUC), Vestegnen HF & VUC, Voksenuddannelsescenter Frederiksberg (VUF), VUC Roskilde, VUC Storstrøm.
+            </p>
+            <p>
+                Disse digitale læringsmaterialer er til brug på de deltagende voksenuddannelsescentre, og målsætningen er:
+            </p>
+            <ul>
+                <li>at understøtte individualisering & differentiering af undervisningen. Det vil sige læring efter den enkeltes tempo og niveau, uafhængigt af tid og rum. </li>
+                <li>at imødekomme fremtidige behov for nye materialer og læringsformer, der er målrettet VUC’s kursister og VUC-sektorens undervisning.</li>
+                <li>at understøtte et lærerbehov, med plukbare og fleksible materialer, der er relevante og motiverende. </li>
+                <li>at skabe øget videndeling omkring nye undervisningsformer og materialer.</li>
+            </ul>
+            <h2>Sådan arbejder vi </h2>
+            <div class="embed-responsive embed-responsive-16by9 col-xs-12 col-md-12">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sWRH3b9K41o?rel=0" allowfullscreen="1"></iframe>
+            </div>
+        
+        </div>
+        <div class="col-sm-12 col-md-5">
+            <h3>UDVIKLINGSHOLDET</h3>
+            <div class="col-xs-4">
+                <img class="img-responsive" src="img/pers/tly_kvuc_dk_MThumb.jpg">
+            </div>
+            <div class="col-xs-8">
+                <b>Tina Lybæk</b>
+                <br/>
+                <a href="mailto:tly@kvuc.dk">tly@kvuc.dk </a>
+                <p>Projektkoordination, UX, Design </p>
+            </div>
+
+        </div>
+            <!-- <div id="vucCarousel">
+            </div>-->
+    </div>
+    <div class="col-xs-12 footer_search"></div>
     <script src="../library/vendor_scripts.js"></script>
     <script src="../library/custom_scripts.js"></script>
     <script src="../library/js/masonry_min.js"></script>
     <script src="../library/js/visningssite.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        one_line_footer();
-        getAjaxData("GET", "json/data.json", false, "json");
-    });
-    </script>
     <script type="text/javascript">
     $(document).ready(function() {
         getAjaxData("GET", "../promotion/json/carouselData.json", false, "json");
