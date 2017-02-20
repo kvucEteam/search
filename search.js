@@ -14,6 +14,8 @@
 
  $(document).ready(function() {
 
+    
+
      build_topmenu();
      //build_tn_grid();
 
@@ -59,7 +61,7 @@
      });
 
      getRequestedObjectsByUrl();  // Set all visual perameters according to URL perameters and performs search. Added by THAN 06-02-2017.
-
+$(".input_text").focus();     
  });
 
 

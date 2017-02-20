@@ -15,6 +15,7 @@ $(document).ready(function() {
             linktoSearchSite();
         }
     });
+    $(".input_text").focus();     
 });
 
 
