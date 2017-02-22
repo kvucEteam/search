@@ -129,7 +129,7 @@ body {
     margin-right: 5px;
 }
 
-a {
+.menu_a {
     color: white;
 }
 
@@ -281,4 +281,19 @@ a:hover {
     .txt_container {
         margin-top: 5%;
     }
+}
+
+.maillink{
+    color:black;
+    text-decoration: underline;
+}
+
+
+.maillink:hover{
+    color:#05A0A8;
+    text-decoration: underline;
+}
+
+#copy_href{
+    color:black;
 }

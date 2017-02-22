@@ -14,7 +14,7 @@
 
  $(document).ready(function() {
 
-    
+
 
      build_topmenu();
      //build_tn_grid();
@@ -35,7 +35,7 @@
 
      var clipboard = new Clipboard('.btn-get_link', {
          text: function() {
-             UserMsgBox("body", "<h4>Du har kopieret linket</h4>Linket <b>" + jsonData[active_tn].meta_objUrl + "</b> er nu kopieret til din udklipsholderen.<br/>Du kan nu indsætte linket, der hvor du skal bruge det.");
+             UserMsgBox("body", "<h4>Du har kopieret linket</h4><p>Linket <b>" + jsonData[active_tn].meta_objUrl + "</b> er nu kopieret til din udklipsholderen.</p><br/>Du kan nu indsætte linket, der hvor du skal bruge det.");
              return jsonData[active_tn].meta_objUrl;
 
          }
@@ -47,7 +47,7 @@
              var help_fronter = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=kUsW0vEXeF4">Hjælp til indlejring i Fronter </a>'
 
 
-             UserMsgBox("body", "<h4>Indsæt link i LMS</h4><a>" + embedlink + "</a><p>Indlejringskoden er nu kopieret til din udklipsholder, og du kan indsætte linket i dit LMS eller på din webside.<br/></p>" + help_moodle + "<br/>" + help_fronter);
+             UserMsgBox("body", "<h4>Du har kopieret linket til LMS</h4><p>Indlejringskoden er nu kopieret til din udklipsholder, og du kan indsætte linket i dit LMS eller på din webside.<br/></p><br/>" + help_moodle + "<br/>" + help_fronter);
              return embedlink;
 
          }
@@ -60,14 +60,15 @@
          }
      });
 
-     getRequestedObjectsByUrl();  // Set all visual perameters according to URL perameters and performs search. Added by THAN 06-02-2017.
-$(".input_text").focus();     
+     getRequestedObjectsByUrl(); // Set all visual perameters according to URL perameters and performs search. Added by THAN 06-02-2017.
+     $(".input_text").focus();
  });
 
 
  function perform_search() {
 
      $(".result_container").css("height", "0px");
+     $(".footer_search").hide();
 
      UserMsgBox("body", "<div class='search_loader'><img src='../library/img/vid_preloader.gif'><br/><br/><p><span class='src_text'>Søger læringsobjekter</span></p></div>");
      $(".CloseClass").hide();
@@ -169,6 +170,7 @@ $(".input_text").focus();
 
                  $(".no_result_container").hide();
                  $(".tn_container").hide();
+
              }
 
 
@@ -226,27 +228,42 @@ $(".input_text").focus();
          HTML += '<div class="thumbnail col-xs-12">';
          HTML += '<div class="thumb_img_container col-xs-9">';
          //HTML += '';
-         HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"><img class="img-responsive" src="' + jd.meta_imgUrl + '" alt="..."></a></div>';
-         HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
+         if (jd.meta_imgUrl != null) {
+             HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"><img class="img-responsive" src="' + jd.meta_imgUrl + '" alt="..."></a></div>';
+         } else {
+             HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"></a></div>';
+         }
+         if (jd.meta_subject != null) {
+             HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
+         }
          HTML += '<div class="col-xs-12">';
          HTML += '<h3>' + jd.meta_objTitel + '</h3>';
 
          HTML += '<div class="link_container"><span class="btn btn-sm btn-info btn-link_kat"><a id="copy_href" target="_blank" href="' + jd.meta_objUrl + '">Åbn objekt </a></span> <span class="btn btn-sm btn-info btn-get_link btn-link_kat"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed btn-link_kat"> Indsæt i LMS </span> </div>';
-         HTML += '<p><b>Objekttype: </b>';
-         for (var o = 0; o < jd.meta_objType.length; o++) {
-             HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+
+         if (jd.meta_objType != null) {
+             HTML += '<p><b>Objekttype: </b>';
+             for (var o = 0; o < jd.meta_objType.length; o++) {
+                 HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+             }
+             HTML += '</p>';
          }
-         HTML += '</p>';
-         HTML += '<p><b>Kursistformål: </b>  ' + jd.meta_studentPurpose + '</p>';
-         HTML += "<div class='col-xs-4 tag_label_container'>"
-         for (var u = 0; u < jd.meta_tags.length; u++) {
-             HTML += "<span class='btn btn-info btn-sm tag_label'>#" + jd.meta_tags[u] + "</span>";
+
+         if (jd.meta_studentPurpose != null) {
+             HTML += '<p><b>Kursistformål: </b>  ' + jd.meta_studentPurpose + '</p>';
+         }
+         if (jd.meta_tags != null) {
+             HTML += "<div class='col-xs-4 tag_label_container'>"
+             for (var u = 0; u < jd.meta_tags.length; u++) {
+                 HTML += "<span class='btn btn-info btn-sm tag_label'>#" + jd.meta_tags[u] + "</span>";
+             }
          }
          HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon '></span>Læs om objektet</div></div>";
          HTML += '</div> </div> </div>';
 
          //console.log(HTML);
          $(".result_container").append(HTML);
+         $(".footer_search").show();
 
      }
 
@@ -400,40 +417,40 @@ $(".input_text").focus();
          }
      }
 
-        // IMPORTANT: 
-        // The following has been commented out since Safari (and some versions of IE11, perhaps due to some individual browser settings) does not fetch the subjects from DB correctly
-        // ===============================
-        // if (srvLiveState) {
-        //     var cc = Object.create(core_CLASS);
-        //     successCallBack = function(result) {
-        //         // alert('result: SUCCESS');
+     // IMPORTANT: 
+     // The following has been commented out since Safari (and some versions of IE11, perhaps due to some individual browser settings) does not fetch the subjects from DB correctly
+     // ===============================
+     // if (srvLiveState) {
+     //     var cc = Object.create(core_CLASS);
+     //     successCallBack = function(result) {
+     //         // alert('result: SUCCESS');
 
-        //         var json = JSON.parse(cc.ajaxUnwrap(result));
-        //         console.log('tag_label - successCallBack - json: ' + JSON.stringify(json));
+     //         var json = JSON.parse(cc.ajaxUnwrap(result));
+     //         console.log('tag_label - successCallBack - json: ' + JSON.stringify(json));
 
-        //         fag_Array = json;
+     //         fag_Array = json;
 
-        //         for (var i = 0; i < fag_Array.length; i++) {
-        //             $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
-        //         }
+     //         for (var i = 0; i < fag_Array.length; i++) {
+     //             $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+     //         }
 
-        //         $(".btn-fag").click(function() {  // We need to set event-listeners after we add btn-fag:
-        //             click_fag($(this));
-        //         });
-        //     }
-        //     errorCallBack = function(result) {
-        //         alert('FEJL: Serveren kunne ikke hente fag fra databasen!');
-        //     }
+     //         $(".btn-fag").click(function() {  // We need to set event-listeners after we add btn-fag:
+     //             click_fag($(this));
+     //         });
+     //     }
+     //     errorCallBack = function(result) {
+     //         alert('FEJL: Serveren kunne ikke hente fag fra databasen!');
+     //     }
 
-        //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html'); 
-        // } else {
-        //     // fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"]; // Commented out by THAN 30/1-2017
-            // fag_Array = ["Biologi","Dansk","Engelsk","Geografi","Kemi","KS"]; // Current subjects - Added by THAN 30/1-2017
+     //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html'); 
+     // } else {
+     //     // fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURVIDENSKAB", "PSYKOLOGI", "RELIGION", "SAMFUNDSFAG", "SPANSK", "TYSK"]; // Commented out by THAN 30/1-2017
+     // fag_Array = ["Biologi","Dansk","Engelsk","Geografi","Kemi","KS"]; // Current subjects - Added by THAN 30/1-2017
 
-            // for (var i = 0; i < fag_Array.length; i++) {
-            //     $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
-            // }
-        // }
+     // for (var i = 0; i < fag_Array.length; i++) {
+     //     $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
+     // }
+     // }
 
 
  }
@@ -444,73 +461,97 @@ $(".input_text").focus();
 
      var HTML = "<div class='content_wrapper'><h2>" + jd.meta_objTitel + "</h2>";
      HTML += "<img src='" + jd.meta_imgUrl + "' class='img-responsive cropped'/>";
-     HTML += '<p class="objektinfo"><b>Objekttype: </b>';
-     for (var o = 0; o < jd.meta_objType.length; o++) {
-         if (o > 0) {
-             HTML += jd.meta_objType[o].toLowerCase() + ((o == jd.meta_objType.length - 1) ? '' : ', ');
-         } else {
-             HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+     if (jd.meta_objType.length > 0) {
+         HTML += '<p class="objektinfo"><b>Objekttype: </b>';
+         for (var o = 0; o < jd.meta_objType.length; o++) {
+             if (o > 0) {
+                 HTML += jd.meta_objType[o].toLowerCase() + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+             } else {
+                 HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
+             }
          }
+         HTML += '</p>';
      }
-     HTML += '</p>';
-     HTML += "<p class='objektinfo'><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
-
-     HTML += "<p class='objektinfo'><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
-     HTML += "<p class='objektinfo'><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
-     HTML += '<p class="objektinfo"><b>Læringsmål: </b><ul>';
+     if (jd.meta_studentPurpose != null) {
+         HTML += "<p class='objektinfo'><b>Kursistformål: </b>" + jd.meta_studentPurpose + "</p>";
+     }
+     if (jd.meta_studentPrerequisites != null) {
+         HTML += "<p class='objektinfo'><b>Kursistforudsætninger: </b>" + jd.meta_studentPrerequisites + "</p>";
+     }
+     if (jd.meta_workMethod != null) {
+         HTML += "<p class='objektinfo'><b>Arbejdsmetode: </b>" + jd.meta_workMethod + "</p>";
+     }
+     if (jd.meta_teachingPurpose.length > 0) {
+         HTML += '<p class="objektinfo"><b>Læringsmål: </b><ul>';
+     }
      for (var p = 0; p < jd.meta_teachingPurpose.length; p++) {
          HTML += '<li>' + jd.meta_teachingPurpose[p] + ((p == jd.meta_teachingPurpose.length - 1) ? '' : '</li>');
      }
      HTML += '</ul></p>';
-     HTML += '<p class="objektinfo"><b>Aktivitetsform: </b>';
-     for (var o = 0; o < jd.meta_activityForm.length; o++) {
-         if (o > 0) {
-             HTML += jd.meta_activityForm[o].toLowerCase() + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
-         } else {
-             HTML += jd.meta_activityForm[o] + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+     if (jd.meta_activityForm.length > 0) {
+         HTML += '<p class="objektinfo"><b>Aktivitetsform: </b>';
+         for (var o = 0; o < jd.meta_activityForm.length; o++) {
+             if (o > 0) {
+                 HTML += jd.meta_activityForm[o].toLowerCase() + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+             } else {
+                 HTML += jd.meta_activityForm[o] + ((o == jd.meta_activityForm.length - 1) ? '' : ', ');
+             }
+         }
+         HTML += '</p>';
+     }
+     if (jd.meta_tags.length > 0) {
+         HTML += '<p class="objektinfo"><b>Tags: </b>';
+         for (var o = 0; o < jd.meta_tags.length; o++) {
+             HTML += '#' + jd.meta_tags[o] + ((o == jd.meta_tags.length - 1) ? '' : ' ');
          }
      }
      HTML += '</p>';
+     if (jd.meta_level.length > 0) {
+         HTML += '<p class="objektinfo"><b>Niveau: </b>';
+         for (var o = 0; o < jd.meta_level.length; o++) {
+             HTML += jd.meta_level[o] + ((o == jd.meta_level.length - 1) ? '' : ', ');
+         }
+         HTML += '</p>';
+     }
+     if (jd.meta_theme.length > 0) {
+         HTML += '<p class="objektinfo"><b>Tema: </b>';
+         for (var o = 0; o < jd.meta_theme.length; o++) {
+             HTML += jd.meta_theme[o] + ((o == jd.meta_theme.length - 1) ? '' : ', ');
+         }
+         HTML += '</p>';
+     }
+     if (jd.meta_duration != null) {
+         HTML += "<p class='objektinfo'><b>Varighed: </b>" + jd.meta_duration + "</p>";
+     }
+     if (jd.meta_difficulty != null) {
+         HTML += "<p class='objektinfo'><b>Sværhedsgrad: </b>" + jd.meta_difficulty + "</p>";
+     }
 
-     HTML += '<p class="objektinfo"><b>Tags: </b>';
-     for (var o = 0; o < jd.meta_tags.length; o++) {
-         HTML += '#' + jd.meta_tags[o] + ((o == jd.meta_tags.length - 1) ? '' : ' ');
+     if (jd.meta_form.length > 0) {
+         HTML += '<p class="objektinfo"><b>Form: </b>';
+         for (var o = 0; o < jd.meta_form.length; o++) {
+             HTML += jd.meta_form[o] + ((o == jd.meta_form.length - 1) ? '' : ', ');
+         }
+         HTML += '</p>';
      }
-     HTML += '</p>';
-
-     HTML += '<p class="objektinfo"><b>Niveau: </b>';
-     for (var o = 0; o < jd.meta_level.length; o++) {
-         HTML += jd.meta_level[o] + ((o == jd.meta_level.length - 1) ? '' : ', ');
-     }
-     HTML += '</p>';
-
-     HTML += '<p class="objektinfo"><b>Tema: </b>';
-     for (var o = 0; o < jd.meta_theme.length; o++) {
-         HTML += jd.meta_theme[o] + ((o == jd.meta_theme.length - 1) ? '' : ', ');
-     }
-     HTML += '</p>';
-     HTML += "<p class='objektinfo'><b>Varighed: </b>" + jd.meta_duration + "</p>";
-     HTML += "<p class='objektinfo'><b>Sværhedsgrad: </b>" + jd.meta_difficulty + "</p>";
-     HTML += '<p class="objektinfo"><b>Form: </b>';
-     for (var o = 0; o < jd.meta_form.length; o++) {
-         HTML += jd.meta_form[o] + ((o == jd.meta_form.length - 1) ? '' : ', ');
-     }
-     HTML += '</p>';
-     HTML += '<p class="objektinfo"><b>Type: </b>';
-     for (var o = 0; o < jd.meta_media_type.length; o++) {
-         if (o > 0) {
-             HTML += jd.meta_media_type[o].toLowerCase() + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
-         } else {
-             HTML += jd.meta_media_type[o] + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
+     if (jd.meta_media_type.length > 0) {
+         HTML += '<p class="objektinfo"><b>Type: </b>';
+         for (var o = 0; o < jd.meta_media_type.length; o++) {
+             if (o > 0) {
+                 HTML += jd.meta_media_type[o].toLowerCase() + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
+             } else {
+                 HTML += jd.meta_media_type[o] + ((o == jd.meta_media_type.length - 1) ? '' : ', ');
+             }
          }
      }
+     if (jd.meta_author.length > 0) {
+         HTML += '<p class="objektinfo"><b>Forfattere: </b><br/>';
+         for (var o = 0; o < jd.meta_author.length; o++) {
+             console.log(jd.meta_author[o].firstname);
+             HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname + " - ";
+             HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
 
-     HTML += '<p class="objektinfo"><b>Forfattere: </b><br/>';
-     for (var o = 0; o < jd.meta_author.length; o++) {
-         console.log(jd.meta_author[o].firstname);
-         HTML += jd.meta_author[o].titel + " " + jd.meta_author[o].firstname + " " + jd.meta_author[o].lastname + " - ";
-         HTML += jd.meta_author[o].institution + " email: " + jd.meta_author[o].email + "</p>"
-
+         }
      }
      HTML += '</p></div>';
 
@@ -519,53 +560,53 @@ $(".input_text").focus();
  }
 
 
-function getRequestedObjectsByUrl() {
+ function getRequestedObjectsByUrl() {
 
-    var UlrVarObj = {};   // Define UlrVarObj
-    UlrVarObj = ReturnURLPerameters(UlrVarObj);  // Get URL file perameter. 
-    console.log('search - URL check - UlrVarObj 1: ' + JSON.stringify(UlrVarObj));
+     var UlrVarObj = {}; // Define UlrVarObj
+     UlrVarObj = ReturnURLPerameters(UlrVarObj); // Get URL file perameter. 
+     console.log('search - URL check - UlrVarObj 1: ' + JSON.stringify(UlrVarObj));
 
-    // If the script is on the live server AND "fag" OR "q" is set, then.... 
-    if ((typeof(oneTimeUrlCheck) === 'undefined') && (srvLiveState) && ((typeof(UlrVarObj.fag) !== 'undefined') || (typeof(UlrVarObj.q) !== 'undefined'))){
+     // If the script is on the live server AND "fag" OR "q" is set, then.... 
+     if ((typeof(oneTimeUrlCheck) === 'undefined') && (srvLiveState) && ((typeof(UlrVarObj.fag) !== 'undefined') ||  (typeof(UlrVarObj.q) !== 'undefined'))) {
 
-        window.oneTimeUrlCheck = 1;
+         window.oneTimeUrlCheck = 1;
 
-        console.log('search - URL check - getUrlVars: ' + JSON.stringify(getUrlVars())); // <----- Check af getUrlVars() fra shared functions: denne giver kun navnet på variablerne, og ikke de tilhørende værdier også.
+         console.log('search - URL check - getUrlVars: ' + JSON.stringify(getUrlVars())); // <----- Check af getUrlVars() fra shared functions: denne giver kun navnet på variablerne, og ikke de tilhørende værdier også.
 
-        console.log('search - URL check - UlrVarObj 2: ' + JSON.stringify(UlrVarObj));
+         console.log('search - URL check - UlrVarObj 2: ' + JSON.stringify(UlrVarObj));
 
-        // .fag_btn_container
-        if (typeof(UlrVarObj.fag) !== 'undefined') {
-            $( ".btn-fag" ).each(function( index, element ) {
-                if (UlrVarObj.fag.toLowerCase().indexOf($(element).text().toLowerCase()) !== -1) {
-                    $(element).addClass("btn-primary").removeClass("btn-info");
-                }
-            });
-        }
+         // .fag_btn_container
+         if (typeof(UlrVarObj.fag) !== 'undefined') {
+             $(".btn-fag").each(function(index, element) {
+                 if (UlrVarObj.fag.toLowerCase().indexOf($(element).text().toLowerCase()) !== -1) {
+                     $(element).addClass("btn-primary").removeClass("btn-info");
+                 }
+             });
+         }
 
-        if (typeof(UlrVarObj.q) !== 'undefined') {
-            $(".search_textfield").val(UlrVarObj.q.replace(/\+/g, ' '));
-        }
+         if (typeof(UlrVarObj.q) !== 'undefined') {
+             $(".search_textfield").val(UlrVarObj.q.replace(/\+/g, ' '));
+         }
 
-        perform_search();
-    }
-} 
+         perform_search();
+     }
+ }
 
 
-function ReturnURLPerameters(UlrVarObj){
-    var UrlVarStr = window.location.search.substring(1);
-    console.log("ReturnURLPerameters - UrlVarStr: " + UrlVarStr);
-    var UrlVarPairArray = decodeURIComponent(UrlVarStr).split("&");  // decodeURIComponent handles %26" for the char "&" AND "%3D" for the char "=".
-    console.log("ReturnURLPerameters - UrlVarPairArray: " + UrlVarPairArray);
-    for (var i in UrlVarPairArray){
-        var UrlVarSubPairArray = UrlVarPairArray[i].split("=");  // & = %3D
-        if (UrlVarSubPairArray.length == 2){
-            UlrVarObj[UrlVarSubPairArray[0]] = UrlVarSubPairArray[1];
-        }
-    }
-    console.log("ReturnURLPerameters - UlrVarObj: " + JSON.stringify( UlrVarObj ));
-    return UlrVarObj;
-}
+ function ReturnURLPerameters(UlrVarObj) {
+     var UrlVarStr = window.location.search.substring(1);
+     console.log("ReturnURLPerameters - UrlVarStr: " + UrlVarStr);
+     var UrlVarPairArray = decodeURIComponent(UrlVarStr).split("&"); // decodeURIComponent handles %26" for the char "&" AND "%3D" for the char "=".
+     console.log("ReturnURLPerameters - UrlVarPairArray: " + UrlVarPairArray);
+     for (var i in UrlVarPairArray) {
+         var UrlVarSubPairArray = UrlVarPairArray[i].split("="); // & = %3D
+         if (UrlVarSubPairArray.length == 2) {
+             UlrVarObj[UrlVarSubPairArray[0]] = UrlVarSubPairArray[1];
+         }
+     }
+     console.log("ReturnURLPerameters - UlrVarObj: " + JSON.stringify(UlrVarObj));
+     return UlrVarObj;
+ }
 
 
  /*objId: null, // "objekt id",             TYPE: integer, objektets id ift. tabellen over alle objekter.
