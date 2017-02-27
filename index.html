@@ -13,37 +13,63 @@
     <link rel="stylesheet" href="search.css" type="text/css" />
     <link rel="stylesheet" href="promotion/extra_carousel_styling.css" type="text/css" />
     <link rel="stylesheet" href="promotion/promotion.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 </head>
 
 <body>
-    <div class="top_header">
+    <div class="top_header ">
         <div class="container-fluid">
-            <div class="innner_logo">
-                <img class="v_logo" src="img/V_primary_active.svg">
-                <h3 class="txt_container">
-                    <div class="col-xs-6">
+            <div class="col-xs-6">
+                <div class="innner_logo">
+                    <img class="v_logo" src="img/VucdigitalLOGO_forHeader.svg">
+                    <div>
                         <span class="logo_text">vucdigital.dk</span>
                     </div>
-                    <div class="col-xs-6 menu ">
-                        <span> <a class="menu_a" href="https://www.vucdigital.dk">FORSIDE</a></span> | <span> <a class="menu_a" href="about.html">OM VUCDIGITAL</a></span>
-                    </div>
-                </h3>
+                </div>
+                <div class="txt_container">
+                </div>
+            </div>
+            <div class="col-xs-6 menu ">
+                <span> <a class="menu_a" href="https://www.vucdigital.dk">FORSIDE</a></span> | <span> <a class="menu_a" href="about.html">OM OS</a></span>
             </div>
         </div>
     </div>
+    </div>
     <div class="container-fluid container_main">
-        <div class="fag_btn_container">
+        <div class="row"></div>
+        <div class="fag_btn_container col-sm-12 col-md-12">
         </div>
-        <div class="search_container">
+        <div class="search_container col-sm-12 col-md-6">
             <div class="inner_inputcontainer">
                 <input type="text" name="search" class="input_text search_textfield" placeholder="Søg på vucdigital.dk">
                 <span class="closeinput glyphicon glyphicon-remove"></span>
                 <input class="btn btn-primary btn-search" type="submit" value="SØG">
             </div>
         </div>
+        <div class="row"></div>
         <div class="result_container"></div>
         <div class="no_result_container"></div>
         <div class="tn_container">
+            <div class="col-xs-12 col-sm-6 post-box">
+                <div class="thumbnail">
+                    <div class="thumb_img_container">
+                        <img src="../library/img_frontpage/forside_biologi.jpg" alt="...">
+                        <a target="_blank" href="ks">
+                            <div class="thumb_overlay"></div>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>Biologi</h3>
+                        <p>
+                            Dette læringsmateriale til Kultur- og samfundsfaggruppen fokuserer på fagenes samspil og har til formål at styrke kursistens undersøgende og problemorienterede arbejde med stoffet.
+                        </p>
+                        <p>
+                            Materialet indeholder både øvelser, der introducerer kursisten til fagpakkens grundlæggende fokus og arbejdsformer, og øvelser, der træner kursistens evne til at foretage selvstændig undersøgelse og refleksion.
+                        </p>
+                        <a target="_blank" href="ks/" class="btn btn-default btn-lg" role="button">Se materialet</a>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-6 post-box">
                 <!-- 3 -->
                 <div class="thumbnail">
@@ -197,16 +223,22 @@
         </div>
     </div>
     <div class="footer_search">
-        <p class="copyright">© 2017 vucdigital</p>
-        <p class="contact"><a href="mailto:e-support@kvuc.dk">Send en mail</a></p>
+        <div class="container-fluid">
+            <b><p class="copyright">Et samarbejde mellem</b></p>
+            <img src="img/footerpic_test.png" class="img-responsive">
+            <div class="hr_line"></div>
+            <p class="contact"><a class="contact_a" href="mailto:info@vucdigital.dk">info@vucdigital.dk</a></p>
+        </div>
     </div>
     <script src="../library/vendor_scripts.js"></script>
     <script src="../library/custom_scripts.js"></script>
     <script src="../library/js/masonry_min.js"></script>
     <script src="../library/js/visningssite.js"></script>
+
     <script type="text/javascript">
     $(document).ready(function() {
-        //one_line_footer();
+
+
         getAjaxData("GET", "json/data.json", false, "json");
     });
     </script>

@@ -1,3 +1,5 @@
+
+
 hr {
     border: 0;
     height: 0;
@@ -7,6 +9,10 @@ hr {
 
 .link_container {
     margin-top: -10px;
+}
+
+.inner_inputcontainer{
+    width: 100%;
 }
 
 .post-box {
@@ -64,7 +70,7 @@ h3 {
 
 .input_text {
     height: 33px;
-    width: 69%;
+    width: 80%;
     padding-left: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -79,12 +85,13 @@ h3 {
 
 .seach_container {
     margin-bottom: 2%;
+    margin-left: -12px;
 }
 
 .fag_btn_container {
     margin-bottom: 0px;
-    width: 60%;
     margin-top: 20px;
+    margin-left: -14px;
 }
 
 .btn-fag {
@@ -177,6 +184,7 @@ a:hover {
 
 .search_container {
     margin-bottom: 20px;
+    margin-left: -13px;
 }
 
 .eks_header {
@@ -200,63 +208,87 @@ a:hover {
 }
 
 .v_logo {
-    height: inherit;
-    float: left;
-    max-width: 10%;
+    /* height: inherit; */
+    /* float: left; */
+    /* width: 14%; */
+    height: 145px;
 }
 
 .innner_logo {
-    color: white;
-    height: 50px;
-    padding: 30px 0px 0px 0px;
+    color: red;
+    /* height: 50px; */
+    /* padding: 30px 0px 0px 0px; */
+    position: relative;
+    /* width: 14%; */
+    margin-left: -12px;
 }
 
 .top_header,
 .footer_search {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#05a0a8+0,85af4b+100,7db9e8+100 */
-    background: #05a0a8;
+    height: 93px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2684a0+0,36adb2+20,307273+100 */
+    background: #2684a0;
     /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #05a0a8 0%, #85af4b 100%, #7db9e8 100%);
+    background: -moz-linear-gradient(left, #2684a0 0%, #36adb2 20%, #307273 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #05a0a8 0%, #85af4b 100%, #7db9e8 100%);
+    background: -webkit-linear-gradient(left, #2684a0 0%, #36adb2 20%, #307273 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #05a0a8 0%, #85af4b 100%, #7db9e8 100%);
+    background: linear-gradient(to right, #2684a0 0%, #36adb2 20%, #307273 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#05a0a8', endColorstr='#7db9e8', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-    height: 100px;
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#2684a0', endColorstr='#307273', GradientType=1);
+    /* IE6-9 */
+        font-family: OpenSans Light;
 }
 
 .footer_search {
-    height: 100px;
-    text-align: center;
+      height: 230px;
+      /* text-align: center; */
+      color: #D8EEEF;
+      /* padding-top: 20px; */
+      font-size:18px;
+      padding: 30px;
+      margin-bottom: 20px;
+}
+.contact_a{
+    color: #D8EEEF;
+}
+.contact_a:hover{
     color: white;
-    padding-top: 20px;
 }
 
-.logo_text {}
+.logo_text {
+    position: absolute;
+    top: 24px;
+    left: 145px;
+    color: white;
+    font-size: 36px;
+}
 
 .txt_container {
-    float: left;
-    margin-top: 25px;
+    /* float: left; */
+    /* margin-top: 25px; */
     /* font-size: 20px; */
-    margin-left: -8px;
-    width: 90%;
+    /* margin-left: -8px; */
+    /* width: 90%; */
 }
 
 .menu {
-    /* color:red; */
+    color:white;
     font-size: 18px;
     animation: right;
     text-transform: uppercase;
-    margin-top: 6px;
+    margin-top: 45px;
     margin-right: 0px;
     text-align: right;
 }
 
 .menu > a {
-    color: red;
+    color: white;
     font-size: 100px;
+}
+
+.menu_a:hover{
+    color:#d8eeef;
 }
 
 .medarbejder_container {
@@ -274,26 +306,47 @@ a:hover {
     margin-left: -45px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
     .menu {
-        font-size: 3vw;
+        font-size: 12px;
+       margin-top: 0px;
+
     }
-    .txt_container {
-        margin-top: 5%;
+
+    .logo_text{
+        font-size: 24px;
+        margin-top:12px;
+    }
+  
+}
+
+
+.hr_line{
+    border-top: 1px solid #D8EEEF;
+    padding: 9px;
     }
 }
 
-.maillink{
-    color:black;
+.maillink {
+    color: black;
     text-decoration: underline;
 }
 
-
-.maillink:hover{
-    color:#05A0A8;
+.maillink:hover {
+    color: #05A0A8;
     text-decoration: underline;
 }
 
-#copy_href{
-    color:black;
+#copy_href {
+    color: black;
+}
+
+.top_header{
+    position: relative;
+    margin-top: 7px;
+    /* height: 10%; */
+}
+
+hr{
+    color: #D8EEEF;
 }
