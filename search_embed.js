@@ -15,7 +15,10 @@ $(document).ready(function() {
             linktoSearchSite();
         }
     });
-    $(".input_text").focus();     
+    $(".input_text").focus();
+
+    $(".btn-fag").addClass("btn-sm btn-embed");  
+    $(".logo_text_embed").removeClass("logo_text");   
 });
 
 

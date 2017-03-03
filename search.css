@@ -70,7 +70,7 @@ h3 {
 
 .input_text {
     height: 33px;
-    width: 80%;
+    width: 79%;
     padding-left: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -89,8 +89,8 @@ h3 {
 }
 
 .fag_btn_container {
-    margin-bottom: 0px;
-    margin-top: 20px;
+    margin-bottom: 8px;
+    
     margin-left: -14px;
 }
 
@@ -100,7 +100,7 @@ h3 {
 }
 
 .tn_container {
-    margin-bottom: 70px;
+    margin-bottom: 0px;
 }
 
 #UserMsgBox {
@@ -139,15 +139,12 @@ body {
 
 .menu_a {
     color: white;
+    padding-left: 6px;
+    padding-right:6px;
 }
 
 .objektinfo {
     padding-top: 10px;
-}
-
-a:hover {
-    color: black;
-    text-decoration: none;
 }
 
 .content_wrapper {
@@ -196,6 +193,8 @@ a:hover {
 .btn-search_embed {
     margin-top: -3px;
     height: 33px;
+    margin-left: 20px;
+
 }
 
 @media (max-width: 750px) {
@@ -248,7 +247,8 @@ a:hover {
     /* padding-top: 20px; */
     font-size: 18px;
     padding: 30px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin-top: 20px;
 }
 
 .contact_a {
@@ -262,10 +262,10 @@ a:hover {
 
 .logo_text {
     position: absolute;
-    top: 24px;
+    top: 32px;
     left: 145px;
     color: white;
-    font-size: 36px;
+    font-size: 30px;
 }
 
 .txt_container {
@@ -284,6 +284,7 @@ a:hover {
     margin-top: 45px;
     margin-right: 0px;
     text-align: right;
+    padding-right: 44px;
 }
 
 .menu > a {
@@ -297,13 +298,17 @@ a:hover {
 
 .medarbejder_container {
     padding: 0px;
+    margin-left: 8%;
+    margin-top: 50px;
+}
+
+.medarb_img{
+    max-width: 105px;
 }
 
 .embed_search {
-    background-image: url("img/search_v.png");
-    background-repeat: no-repeat;
-    padding: 0px 0px 0px 40px;
-    margin: 20px;
+    
+    width: 70%;
 }
 
 .closeinput_embed {
@@ -321,9 +326,15 @@ a:hover {
     }
 }
 
+.btn-link_kat > a:hover{
+    text-decoration: none;
+}
+
 .hr_line {
     border-top: 1px solid #D8EEEF;
     padding: 9px;
+    margin-top: 30px;
+
 }
 
 
@@ -349,8 +360,78 @@ hr {
 }
 #UserMsgBox {
     width: 95%;
+    max-width: 760px;
     padding: 30px 0px 40px 0px;
 }
 .logoer {
     margin-bottom: 30px;
+}
+
+.copyright{
+    margin-bottom: 20px;
+}
+
+.leftlink{
+    color: #D8EEEF;
+    font-size: 14px; 
+    text-align: right;
+    margin-top: 5px;
+}
+
+#vucCarousel{
+    color:green;
+    margin-bottom: 50px;
+}
+
+.video_embed{
+    margin-top: 30px;
+}
+
+.main_content{
+    margin-top: -30px;
+}
+
+.logo_text_embed{
+    font-size: 20px;
+    left: 85px;
+    top: 19px;
+    position: absolute;
+    color: white;
+}
+
+.v_logo_embed{
+    height: 85px;
+}
+
+.top_header_embed{
+    height: 57px;
+}
+
+.btn-embed{
+    
+    margin:4px;
+}
+
+.luksus_btn-search{
+    
+}
+
+.luksus_input_text{width: 73%;margin-left: 3px;}
+
+.slogan{
+    font-size: 12px;
+    margin-left: -10px;
+    
+}
+
+#vucCarousel{
+    margin-top: 20px;
+}
+
+.v_logo, logo_text{
+    cursor: pointer;
+}
+
+.inner_inputcontainer_embed_raw{
+    margin: 20px;
 }

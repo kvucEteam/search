@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--   http://eundervisning-wp.dk/objekter/kemiC_visningsite/  -->
+    <title>Søg på vucdigital.dk</title>
+    <!-- http://www.robotstxt.org/meta.html -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../library/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="../library/css/visningssite.css" type="text/css" />
+    <link rel="stylesheet" href="search.css" type="text/css" />
+    <link rel="stylesheet" href="promotion/extra_carousel_styling.css" type="text/css" />
+    <link rel="stylesheet" href="promotion/promotion.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+</head>
+
+<body>
+    <div class="top_header top_header_embed">
+        <div class="container-fluid">
+            <div class="col-xs-6">
+                <div class="innner_logo">
+                    <img class="v_logo_embed" src="img/VucdigitalLOGO_forHeader.svg">
+                    <div>
+                        <span class="logo_text logo_text_embed">vucdigital.dk</span>
+                    </div>
+                </div>
+                <div class="txt_container">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container-fluid container_main">
+        <div class="row"></div>
+        <div class="col-xs-12 slogan">
+            <p>Interaktive læringsobjekter - Nul login</p>
+        </div>
+        <div class="fag_btn_container col-sm-12 col-md-12">
+        </div>
+        <div class="search_container col-sm-12 col-md-6">
+            <div class="inner_inputcontainer">
+                <input type="text" name="search" class="input_text search_textfield luksus_input_text" placeholder="Søg materialer på vucdigital.dk">
+                <span class="closeinput glyphicon glyphicon-remove"></span>
+                <input class="btn btn-primary btn-search luksus_btn-search " type="submit" value="SØG">
+            </div>
+        </div>
+    </div>
+    <script src="../library/vendor_scripts.js"></script>
+    <script src="../library/custom_scripts.js"></script>
+    <script src="../library/js/masonry_min.js"></script>
+    <script src="../library/js/visningssite.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+
+        getAjaxData("GET", "json/data.json", false, "json");
+    });
+    </script>
+    <script src="https://www.vucdigital.dk/core/js/core.js"></script>
+    <script src="search.js"></script>
+    <script src="search_embed.js"></script>
+</body>
+
+</html>
