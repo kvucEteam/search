@@ -8,7 +8,6 @@ hr {
 .link_container {
     margin-top: -10px;
     margin-bottom: 20px;
-
 }
 
 .inner_inputcontainer {
@@ -90,7 +89,6 @@ h3 {
 
 .fag_btn_container {
     margin-bottom: 8px;
-    
     margin-left: -14px;
 }
 
@@ -140,7 +138,7 @@ body {
 .menu_a {
     color: white;
     padding-left: 6px;
-    padding-right:6px;
+    padding-right: 6px;
 }
 
 .objektinfo {
@@ -175,9 +173,10 @@ body {
 
 .closeinput {
     margin-left: -24px;
-    border-radius: 7px;
-    cursor: pointer;
+    border-radius: 0px;
     color: #b1b1b1;
+    background-color: rgba(255, 255, 255, .8);
+    padding: 2px;
 }
 
 .search_container {
@@ -194,7 +193,6 @@ body {
     margin-top: -3px;
     height: 33px;
     margin-left: 20px;
-
 }
 
 @media (max-width: 750px) {
@@ -302,12 +300,11 @@ body {
     margin-top: 50px;
 }
 
-.medarb_img{
+.medarb_img {
     max-width: 105px;
 }
 
 .embed_search {
-    
     width: 70%;
 }
 
@@ -326,7 +323,7 @@ body {
     }
 }
 
-.btn-link_kat > a:hover{
+.btn-link_kat > a:hover {
     text-decoration: none;
 }
 
@@ -352,7 +349,6 @@ body {
 }
 .top_header {
     position: relative;
-    margin-top: 7px;
     /* height: 10%; */
 }
 hr {
@@ -366,76 +362,79 @@ hr {
 .logoer {
     margin-bottom: 30px;
 }
-
-.copyright{
+.copyright {
     margin-bottom: 20px;
 }
-
-.leftlink{
+.leftlink {
     color: #D8EEEF;
-    font-size: 14px; 
+    font-size: 14px;
     text-align: right;
     margin-top: 5px;
 }
-
-#vucCarousel{
-    color:green;
+#vucCarousel {
+    color: green;
     margin-bottom: 50px;
 }
-
-.video_embed{
+.video_embed {
     margin-top: 30px;
 }
-
-.main_content{
+.main_content {
     margin-top: -30px;
 }
-
-.logo_text_embed{
+.logo_text_embed {
     font-size: 20px;
     left: 85px;
     top: 19px;
     position: absolute;
     color: white;
 }
-
-.v_logo_embed{
+.v_logo_embed {
     height: 85px;
 }
-
-.top_header_embed{
+.top_header_embed {
     height: 57px;
 }
-
-.btn-embed{
-    
-    margin:4px;
+.btn-embed {
+    margin: 4px;
 }
-
-.luksus_btn-search{
-    
+.luksus_btn-search {}
+.luksus_input_text {
+    width: 73%;
+    margin-left: 3px;
 }
-
-.luksus_input_text{width: 73%;margin-left: 3px;}
-
-.slogan{
+.slogan {
     font-size: 12px;
     margin-left: -10px;
-    
 }
-
-#vucCarousel{
+#vucCarousel {
     margin-top: 20px;
 }
-
-.v_logo, .logo_text, .v_logo_embed, .logo_text_embed{
+.v_logo,
+.logo_text,
+.v_logo_embed,
+.logo_text_embed {
     cursor: pointer;
 }
-
-.inner_inputcontainer_embed_raw{
+.inner_inputcontainer_embed_raw {
     margin: 20px;
 }
-
-.footerlinks{
-        margin-left: -16px;
+.footerlinks {
+    margin-left: -16px;
+}
+@media (max-width: 363px) {
+    .btn-search_embed {
+        margin-left: 0px;
+    }
+    
+    .inner_inputcontainer_embed_raw {
+        margin: 5px;
+    }
+    
+    .search_textfield {
+        width: 100%;
+    }
+}
+.search_textfield {
+    margin-bottom: 10px;
+    
 }

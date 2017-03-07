@@ -1,8 +1,10 @@
 $(document).ready(function() {
     console.log("embed up and running!");
 
+    $(".new_window_link").remove();
+
     $(".btn-search_embed").click(function() {
-        linktoSearchSite();
+        linktoSearchSite("none");
     });
 
     $(".closeinput").click(function() {
@@ -12,26 +14,45 @@ $(document).ready(function() {
     $(document).on("keypress", function(e) {
         // use e.which
         if (e.keyCode == 13) {
-            linktoSearchSite();
+            linktoSearchSite("none");
         }
     });
     $(".input_text").focus();
 
-    $(".btn-fag").addClass("btn-sm btn-embed");  
-    $(".logo_text_embed").removeClass("logo_text");   
+    $(".btn-fag").addClass("btn-sm btn-embed");
+    $(".logo_text_embed").removeClass("logo_text");
+
+    $(".btn-fag").off(); //("off"); 
+
+    $(".btn-fag").on("click", function() {
+        var fag = $(this).html().toLowerCase();
+        $(".search_textfield").val("");
+        linktoSearchSite(fag);
+    });
 });
 
 
 
-function linktoSearchSite() {
+function linktoSearchSite(fag) {
+
+    
+
+
     var search_string = $(".search_textfield").val();
 
     search_string = search_string.split(' ').join('+');
 
 
-    console.log("clicked search: " + search_string);
+    console.log("clicked search: " + search_string + ", fag: " + fag);
 
-    var searchURL = "https://www.vucdigital.dk/search?q=" + search_string;
+
+    if (fag != "none") {
+        var searchURL = "https://www.vucdigital.dk/search?q=" + fag;
+        console.log("Det er et fag");
+    } else {
+        var searchURL = "https://www.vucdigital.dk/search?q=" + search_string; }
+
+
 
     //window.location.href = searchURL;
 

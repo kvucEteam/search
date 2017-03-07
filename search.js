@@ -17,7 +17,7 @@
      $(".v_logo .v_logo_embed .logo_text .logo_text_embed").click(function() {
          document.location.href = "https://www.vucdigital.dk";
      });
-     $(".new_window_link").remove();
+    
      $(".container-fluid").css("padding-top", "0px");
 
 
@@ -213,7 +213,9 @@
          obj.removeClass("btn-info");
      }
 
-     perform_search();
+     //console.log($(".search_textfield").val());
+
+    perform_search();
 
  }
 
