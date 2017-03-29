@@ -14,10 +14,12 @@
 
  $(document).ready(function() {
 
+    google_analytics();
+
      $(".v_logo .v_logo_embed .logo_text .logo_text_embed").click(function() {
          document.location.href = "https://www.vucdigital.dk";
      });
-    
+
      $(".container-fluid").css("padding-top", "0px");
 
 
@@ -40,7 +42,7 @@
 
      var clipboard = new Clipboard('.btn-get_link', {
          text: function() {
-             UserMsgBox("body", "<h4>Du har kopieret linket</h4><p>Linket <b>" + jsonData[active_tn].meta_objUrl + "</b> er nu kopieret til din udklipsholderen.</p><br/>Du kan nu indsætte linket, der hvor du skal bruge det.");
+             UserMsgBox("body", "<div class ='content_wrapper'><h4>Du har kopieret linket</h4><p>Linket <b>" + jsonData[active_tn].meta_objUrl + "</b> er nu kopieret til din udklipsholderen.</p><br/>Du kan nu indsætte linket, der hvor du skal bruge det.</div>");
              return jsonData[active_tn].meta_objUrl;
 
          }
@@ -52,7 +54,7 @@
              var help_fronter = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=kUsW0vEXeF4">Hjælp til indlejring i Fronter </a>'
 
 
-             UserMsgBox("body", "<h4>Du har kopieret linket til LMS</h4><p>Indlejringskoden er nu kopieret til din udklipsholder, og du kan indsætte linket i dit LMS eller på din webside.<br/></p><br/>" + help_moodle + "<br/>" + help_fronter);
+             UserMsgBox("body", "<div class ='content_wrapper'><h4>Du har kopieret linket til LMS</h4><p>Indlejringskoden er nu kopieret til din udklipsholder, og du kan indsætte linket i dit LMS eller på din webside.<br/></p><br/>" + help_moodle + "<br/>" + help_fronter + "</div>");
              return embedlink;
 
          }
@@ -215,7 +217,7 @@
 
      //console.log($(".search_textfield").val());
 
-    perform_search();
+     perform_search();
 
  }
 
@@ -240,16 +242,16 @@
          } else {
              HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"></a></div>';
          }
-         if (jd.meta_subject != null) {
+         if (jd.meta_subject != null && jd.meta_subject.length < 3) {
              HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
          }
          HTML += '<div class="col-xs-12">';
          HTML += '<h3>' + jd.meta_objTitel + '</h3>';
 
-         HTML += '<div class="link_container"><span class="btn btn-sm btn-info btn-link_kat"><a id="copy_href" target="_blank" href="' + jd.meta_objUrl + '">Åbn objekt </a></span> <span class="btn btn-sm btn-info btn-get_link btn-link_kat"> Hent link </span> <span class="btn btn-sm btn-info btn-get_embed btn-link_kat"> Indsæt i LMS </span> </div>';
+         HTML += '<div class="link_container"><div class="big_link"><span class="btn btn-lg btn-default btn-link_kat"><a id="copy_href" target="_blank" href="' + jd.meta_objUrl + '">Åbn objekt </a></span> </div><div class="small_link"><a class="btn-get_link btn-link_kat"> Hent link </a><br/> <a class="btn-get_embed btn-link_kat"> Indsæt i LMS</a> </div></div>';
 
          if (jd.meta_objType != null) {
-             HTML += '<p><b>Objekttype: </b>';
+             HTML += '<div class="row"></div><p><b>Objekttype: </b>';
              for (var o = 0; o < jd.meta_objType.length; o++) {
                  HTML += jd.meta_objType[o] + ((o == jd.meta_objType.length - 1) ? '' : ', ');
              }
@@ -265,7 +267,7 @@
                  HTML += "<span class='btn btn-info btn-sm tag_label'>#" + jd.meta_tags[u] + "</span>";
              }
          }
-         HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon '></span>Læs om objektet</div></div>";
+         HTML += "</div><div class='btn btn-primary btn_overblik'><span class='glyphicon'></span>Læs om objektet</div></div>";
          HTML += '</div> </div> </div>';
 
          //console.log(HTML);
@@ -372,7 +374,7 @@
              columnWidth: '.post-box',
              transitionDuration: 200
          });
-     }, 200);
+     }, 500);
 
 
 
@@ -613,6 +615,42 @@
      }
      console.log("ReturnURLPerameters - UlrVarObj: " + JSON.stringify(UlrVarObj));
      return UlrVarObj;
+ }
+
+ function google_analytics() {
+     if (window.location.href.indexOf("vucdigital.dk") > -1) {
+
+         console.log('googleAnalyticsTest - 1');
+
+         // Hvis cookie'en "vucUdvikling" ikke eksistere, så er det ikke et medlem af udviklingsteamet der besøger siden: aktiver da google analytics:
+         if (!cookieClass.existCookie('vucUdvikling')) {
+
+             console.log('googleAnalyticsTest - 2');
+
+             //$(".container, .container-fluid").append("<div class='col-xs-12 vuc_footer'><h2>Digitale læringsmaterialer på voksenuddannelser</h2><h6 class='footerText'>Udviklet af et produktionsfællesskab mellem otte VUC’er til anvendelse på de deltagende skoler: <br/> Hf og VUC Nordsjælland, VUC Hvidovre-Amager, VUC Roskilde, VUC Vestegnen, VUF, VUC Storstrøm, VUC Aarhus og Københavns VUC (KVUC).</h6> <h6 class='footerCopywrite'> Copyright 2015 </h6></div >");
+             (function(i, s, o, g, r, a, m) {
+                 i['GoogleAnalyticsObject'] = r;
+                 i[r] = i[r] || function() {
+                     (i[r].q = i[r].q || []).push(arguments)
+                 }, i[r].l = 1 * new Date();
+                 a = s.createElement(o),
+                     m = s.getElementsByTagName(o)[0];
+                 a.async = 1;
+                 a.src = g;
+                 m.parentNode.insertBefore(a, m)
+             })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+             ga('create', 'UA-62686407-1', 'auto');
+             ga('send', 'pageview');
+             console.log("GA COMPLETE");
+         } else {
+             $("body").prepend("<div class='label label-success' style='position:absolute;right:0; opacity:0.2' >dev mode</div>");
+             console.log('googleAnalyticsTest - 3');
+         }
+     } else {
+         console.log('googleAnalyticsTest - 4');
+         $("body").prepend("<div class='label label-success' style='position:absolute;right:0; opacity:0.2' >dev mode</div>");
+     }
  }
 
 

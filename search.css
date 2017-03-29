@@ -130,9 +130,9 @@ body {
 }
 
 .btn-link_kat {
-    color: black;
     margin-right: 5px;
-    margin-bottom: -6px
+    margin-bottom: -6px;
+    cursor:pointer;
 }
 
 .menu_a {
@@ -244,7 +244,7 @@ body {
     color: #D8EEEF;
     /* padding-top: 20px; */
     font-size: 18px;
-    padding: 30px;
+        padding: 20px 30px 30px 30px;
     /* margin-bottom: 20px; */
     margin-top: 20px;
 }
@@ -300,9 +300,7 @@ body {
     margin-top: 50px;
 }
 
-.medarb_img {
-    max-width: 105px;
-}
+
 
 .embed_search {
     width: 70%;
@@ -436,5 +434,16 @@ hr {
 }
 .search_textfield {
     margin-bottom: 10px;
-    
+}
+.big_link {
+    margin-top: 10px;
+    margin-bottom: 18px;
+    float:left;
+}
+.small_link {
+    margin-left: 12px;
+    font-size: 14px;
+    float: left;
+    line-height: 1.4;
+    margin-top: 13px;
 }
