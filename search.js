@@ -184,7 +184,9 @@
 
          }
          errorCallBack = function(result) {
-             alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
+             // alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
+
+             console.log('searchObject: FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
          }
 
          console.log('srvCall - jsonString: ' + jsonString);
@@ -312,7 +314,9 @@
 
              }
              errorCallBack = function(result) {
-                 alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
+                 // alert('FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
+
+                 console.log('searchObject_byTag: FEJL: Serveren kunne ikke indsætte det indtastede data i databasen!');
              }
 
              // cc.srvCall('../objectSearch/index.php', {searchObject: jsonString}, successCallBack, errorCallBack, 'html');   // <-----  OK
