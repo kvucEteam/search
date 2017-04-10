@@ -372,7 +372,8 @@
          $('.result_container').masonry({
              itemSelector: '.post-box',
              columnWidth: '.post-box',
-             transitionDuration: 200
+             transitionDuration: 200, 
+             gutter:1
          });
      }, 500);
 
