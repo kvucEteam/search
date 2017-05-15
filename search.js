@@ -14,15 +14,6 @@
 
  $(document).ready(function() {
 
-    google_analytics();
-
-     $(".v_logo .v_logo_embed .logo_text .logo_text_embed").click(function() {
-         document.location.href = "https://www.vucdigital.dk";
-     });
-
-     $(".container-fluid").css("padding-top", "0px");
-
-
      build_topmenu();
      //build_tn_grid();
 
@@ -49,7 +40,7 @@
      });
      var clipboard_embed = new Clipboard('.btn-get_embed', {
          text: function() {
-             var embedlink = '  &lt;iframe height="570" width="100%" frameborder="0" src="' + jsonData[active_tn].meta_objUrl + '"&gt; &lt;iframe&gt;'
+             var embedlink = '  <iframe height="570" width="100%" frameborder="0" src="' + jsonData[active_tn].meta_objUrl + '"> </iframe>';
              var help_moodle = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=0cKkCRRTC_c">Hjælp til indlejring i Moodle </a>';
              var help_fronter = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=kUsW0vEXeF4">Hjælp til indlejring i Fronter </a>'
 
@@ -622,42 +613,7 @@
      return UlrVarObj;
  }
 
- function google_analytics() {
-     if (window.location.href.indexOf("vucdigital.dk") > -1) {
-
-         console.log('googleAnalyticsTest - 1');
-
-         // Hvis cookie'en "vucUdvikling" ikke eksistere, så er det ikke et medlem af udviklingsteamet der besøger siden: aktiver da google analytics:
-         if (!cookieClass.existCookie('vucUdvikling')) {
-
-             console.log('googleAnalyticsTest - 2');
-
-             //$(".container, .container-fluid").append("<div class='col-xs-12 vuc_footer'><h2>Digitale læringsmaterialer på voksenuddannelser</h2><h6 class='footerText'>Udviklet af et produktionsfællesskab mellem otte VUC’er til anvendelse på de deltagende skoler: <br/> Hf og VUC Nordsjælland, VUC Hvidovre-Amager, VUC Roskilde, VUC Vestegnen, VUF, VUC Storstrøm, VUC Aarhus og Københavns VUC (KVUC).</h6> <h6 class='footerCopywrite'> Copyright 2015 </h6></div >");
-             (function(i, s, o, g, r, a, m) {
-                 i['GoogleAnalyticsObject'] = r;
-                 i[r] = i[r] || function() {
-                     (i[r].q = i[r].q || []).push(arguments)
-                 }, i[r].l = 1 * new Date();
-                 a = s.createElement(o),
-                     m = s.getElementsByTagName(o)[0];
-                 a.async = 1;
-                 a.src = g;
-                 m.parentNode.insertBefore(a, m)
-             })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-             ga('create', 'UA-62686407-1', 'auto');
-             ga('send', 'pageview');
-             console.log("GA COMPLETE");
-         } else {
-             $("body").prepend("<div class='label label-success' style='position:absolute;right:0; opacity:0.2' >dev mode</div>");
-             console.log('googleAnalyticsTest - 3');
-         }
-     } else {
-         console.log('googleAnalyticsTest - 4');
-         $("body").prepend("<div class='label label-success' style='position:absolute;right:0; opacity:0.2' >dev mode</div>");
-     }
- }
-
+ 
 
  /*objId: null, // "objekt id",             TYPE: integer, objektets id ift. tabellen over alle objekter.
      meta_objType: [], // "objekt type",           TYPE: array of strings, feks: ["Markeringsøvelse", "Interaktiv model", ...]
