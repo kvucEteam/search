@@ -197,7 +197,7 @@ body {
     }
     .btn-search {
         margin-left: 1%;
-        margin-top: 7px;
+        /*margin-top: 7px;*/
     }
 }
 
@@ -314,6 +314,10 @@ body {
     .search_textfield {
         width: 100%;
     }
+
+    .closeinput{
+        display: none;
+    }
 }
 .search_textfield {
     margin-bottom: 10px;
@@ -329,4 +333,12 @@ body {
     float: left;
     line-height: 1.4;
     margin-top: 13px;
+}
+
+.embed_cont_fluid{
+    padding-top: 0px;
+}
+
+h2{
+    margin-top: 20px;
 }

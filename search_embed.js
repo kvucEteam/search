@@ -17,7 +17,7 @@ $(document).ready(function() {
             linktoSearchSite("none");
         }
     });
-    $(".input_text").focus();
+    //$(".input_text").focus();
 
     $(".btn-fag").addClass("btn-sm btn-embed");
     $(".logo_text_embed").removeClass("logo_text");
@@ -29,6 +29,9 @@ $(document).ready(function() {
         $(".search_textfield").val("");
         linktoSearchSite(fag);
     });
+
+    $(".embed_cont_fluid").css("padding-top", "0px");
+    
 });
 
 
