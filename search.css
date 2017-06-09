@@ -132,10 +132,8 @@ body {
 .btn-link_kat {
     margin-right: 5px;
     margin-bottom: -6px;
-    cursor:pointer;
+    cursor: pointer;
 }
-
-
 
 .objektinfo {
     padding-top: 10px;
@@ -201,21 +199,11 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
 .medarbejder_container {
     padding: 0px;
     margin-left: 8%;
     margin-top: 50px;
 }
-
-
 
 .embed_search {
     width: 70%;
@@ -224,8 +212,6 @@ body {
 .closeinput_embed {
     margin-left: -45px;
 }
-
-
 
 .btn-link_kat > a:hover {
     text-decoration: none;
@@ -251,8 +237,6 @@ body {
 #copy_href {
     color: black;
 }
-
-
 #UserMsgBox {
     width: 95%;
     max-width: 760px;
@@ -261,8 +245,6 @@ body {
 .logoer {
     margin-bottom: 30px;
 }
-
-
 #vucCarousel {
     color: green;
     margin-bottom: 50px;
@@ -301,7 +283,6 @@ body {
 #vucCarousel {
     margin-top: 20px;
 }
-
 @media (max-width: 363px) {
     .btn-search_embed {
         margin-left: 0px;
@@ -314,8 +295,8 @@ body {
     .search_textfield {
         width: 100%;
     }
-
-    .closeinput{
+    
+    .closeinput {
         display: none;
     }
 }
@@ -325,7 +306,7 @@ body {
 .big_link {
     margin-top: 10px;
     margin-bottom: 18px;
-    float:left;
+    float: left;
 }
 .small_link {
     margin-left: 12px;
@@ -334,11 +315,15 @@ body {
     line-height: 1.4;
     margin-top: 13px;
 }
-
-.embed_cont_fluid{
+.embed_cont_fluid {
     padding-top: 0px;
 }
-
-h2{
+h2 {
     margin-top: 20px;
+}
+.no_result_container {
+    margin-bottom: 20px;
+}
+.materiale_container {
+    margin-left: -10px;
 }

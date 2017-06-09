@@ -59,7 +59,7 @@
      });
 
      getRequestedObjectsByUrl(); // Set all visual perameters according to URL perameters and performs search. Added by THAN 06-02-2017.
-     
+
      //$(".input_text").focus();
 
  });
@@ -168,7 +168,7 @@
 
                  build_tn_grid(); // Insert new objects   
 
-                 $(".no_result_container").hide();
+                 //$(".no_result_container").hide();
                  $(".tn_container").hide();
 
              }
@@ -218,17 +218,31 @@
 
  function build_tn_grid() {
 
+
+
+    $(".materiale_container").hide();
+
      console.log("build_tn_grid");
 
+     var headerHTML = '<h2>Søgeresultater</h2>';
+     if (jsonData.length < 2) {
+         headerHTML += 'Din søgning gav et resultat på et undervisningsobjekt.';
+     } else if (jsonData.length > 1) {
+         headerHTML += 'Din søgning gav et resultat på ' + jsonData.length + ' undervisningsobjekter.';
+     }
+     $(".no_result_container").html(headerHTML);
 
+     var HTML = "";
 
      for (var i = 0; i < jsonData.length; i++) {
          var jd = jsonData[i];
          console.log(jsonData[i].meta_imgUrl);
 
+         console.log("I: " + i + ", " + jsonData[i].meta_imgUrl);
+
 
          // var HTML = '<div class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';                            // Commented out by THAN 20-01-2017
-         var HTML = '<div id="objId_' + jd.objId + '" class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';       // Added by THAN 20-01-2017
+         HTML += '<div id="objId_' + jd.objId + '" class="post-box col-sm-12 col-md-6 col-lg-4">'; //' ">';       // Added by THAN 20-01-2017
          HTML += '<div class="thumbnail col-xs-12">';
          HTML += '<div class="thumb_img_container col-xs-9">';
          //HTML += '';
@@ -266,10 +280,12 @@
          HTML += '</div> </div> </div>';
 
          //console.log(HTML);
-         $(".result_container").append(HTML);
+         
          $(".footer_search").show();
 
      }
+
+     $(".result_container").append(HTML);
 
      // $(".tag_label").click(function() {       // Commented out by THAN 20-01-2017
      //     console.log($(this).html());
@@ -369,8 +385,8 @@
          $('.result_container').masonry({
              itemSelector: '.post-box',
              columnWidth: '.post-box',
-             transitionDuration: 200, 
-             gutter:1
+             transitionDuration: 200,
+             gutter: 1
          });
      }, 500);
 
@@ -417,7 +433,7 @@
 
      //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html');
      // } else {
-     fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "NATURFAG", "TYSK"];
+     fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "NATURFAG", "TYSK", "PSYKOLOGI", "RELIGION"];
 
      for (var i = 0; i < fag_Array.length; i++) {
          $(".fag_btn_container").append("<span class='btn btn btn-info btn-fag'>" + fag_Array[i] + "</span>");
@@ -615,7 +631,7 @@
      return UlrVarObj;
  }
 
- 
+
 
  /*objId: null, // "objekt id",             TYPE: integer, objektets id ift. tabellen over alle objekter.
      meta_objType: [], // "objekt type",           TYPE: array of strings, feks: ["Markeringsøvelse", "Interaktiv model", ...]
