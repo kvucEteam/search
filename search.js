@@ -220,7 +220,7 @@
 
 
 
-    $(".materiale_container").hide();
+     $(".materiale_container").hide();
 
      console.log("build_tn_grid");
 
@@ -252,6 +252,9 @@
              HTML += '<a target="_blank" href="' + jd.meta_objUrl + '"></a></div>';
          }
          if (jd.meta_subject != null && jd.meta_subject.length < 3) {
+             if (jd.meta_subject == "Samfundsfag") {
+                 HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">Samf.</span></div>';
+             }
              HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
          }
          HTML += '<div class="col-xs-12">';
@@ -280,7 +283,7 @@
          HTML += '</div> </div> </div>';
 
          //console.log(HTML);
-         
+
          $(".footer_search").show();
 
      }
