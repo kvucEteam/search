@@ -254,8 +254,9 @@
          if (jd.meta_subject != null && jd.meta_subject.length < 3) {
              if (jd.meta_subject == "Samfundsfag") {
                  HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">Samf.</span></div>';
+             } else {
+                 HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
              }
-             HTML += '<div class="col-xs-3 fag_label_container"><span class="label_btn btn btn-info">' + jd.meta_subject + '</span></div>';
          }
          HTML += '<div class="col-xs-12">';
          HTML += '<h3>' + jd.meta_objTitel + '</h3>';
@@ -349,7 +350,19 @@
          $(".search_textfield").val("");
          $(".btn-fag").removeClass("btn-primary").addClass("btn-info");
 
+   
+
+
+
          var thisHTML = $(this).html().toUpperCase();
+
+               // EN LILLE EXCEPTION VED SAMFUNDSFAG (for langt ord:
+         if (thisHTML == "SAMF.") {
+             thisHTML = "SAMFUNDSFAG";
+         }
+         // 
+
+
 
          console.log("THISHTML: " + thisHTML);
 

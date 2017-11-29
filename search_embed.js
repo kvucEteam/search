@@ -3,8 +3,10 @@ $(document).ready(function() {
 
     $(".new_window_link").remove();
 
+//$("btn-search").off();    
+
     $(".btn-search_embed").click(function() {
-        linktoSearchSite("none");
+        linktoSearchSite("intet_fag");
     });
 
     $(".closeinput").click(function() {
@@ -14,7 +16,7 @@ $(document).ready(function() {
     $(document).on("keypress", function(e) {
         // use e.which
         if (e.keyCode == 13) {
-            linktoSearchSite("none");
+            linktoSearchSite("intet_fag");
         }
     });
     //$(".input_text").focus();
@@ -26,7 +28,7 @@ $(document).ready(function() {
 
     $(".btn-fag").on("click", function() {
         var fag = $(this).html().toLowerCase();
-        $(".search_textfield").val("");
+        //$(".search_textfield").val("");
         linktoSearchSite(fag);
     });
 
@@ -49,13 +51,15 @@ function linktoSearchSite(fag) {
     console.log("clicked search: " + search_string + ", fag: " + fag);
 
 
-    if (fag != "none") {
-        var searchURL = "https://www.vucdigital.dk/search?q=" + fag;
+
+
+    if (fag != "intet_fag") {
+        var searchURL = "https://www.vucdigital.dk/search?q=" + fag + " " + search_string;
         console.log("Det er et fag");
     } else {
         var searchURL = "https://www.vucdigital.dk/search?q=" + search_string; }
 
-
+console.log("text døgning");
 
     //window.location.href = searchURL;
 
