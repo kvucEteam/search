@@ -1,0 +1,37 @@
+.top_header {
+    background: #009cc5;
+
+}
+
+.footer_search{
+background: #009cc5;
+}
+
+.logo_text {
+    left: 0px;
+    font-size: 36px;
+    padding: 0px;
+    margin-top: -10px;
+    color: #AEDCEA;
+}
+
+
+.overskrift2{
+	
+}
+
+.kvuc_logo{
+    height: 60px;
+    margin-top: 22px;
+    float: right;
+}
+
+a{
+	color: #777;
+}
+
+.vucIfriame{
+	width: 100%;
+    border: 0;
+    height: 140px;
+}
