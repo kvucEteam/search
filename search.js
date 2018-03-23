@@ -62,6 +62,10 @@
 
      //$(".input_text").focus();
 
+     microhint($(".thumbnail").eq(0).find("p").eq(1), "Herunder finder du en oversigt over alle de digitale materialer, der er udviklet af vucdigital.dk. Materialerne er udviklet i tæt samarbejde med fagredaktører, og kvaliteten er sikret med hjælp fra de deltagende VUCer.")
+     $("body").click(function() {
+         $(".microhint").fadeOut();
+     })
  });
 
 
@@ -350,13 +354,13 @@
          $(".search_textfield").val("");
          $(".btn-fag").removeClass("btn-primary").addClass("btn-info");
 
-   
+
 
 
 
          var thisHTML = $(this).html().toUpperCase();
 
-               // EN LILLE EXCEPTION VED SAMFUNDSFAG (for langt ord:
+         // EN LILLE EXCEPTION VED SAMFUNDSFAG (for langt ord:
          if (thisHTML == "SAMF.") {
              thisHTML = "SAMFUNDSFAG";
          }
