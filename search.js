@@ -56,12 +56,12 @@
      });
       var clipboard_embed = new Clipboard('.btn-get_embed', {
          text: function() {
-             var embedlink = '<script src="https://www.vucdigital.dk/iframe.js" data="'+ jsonData[active_tn].meta_objUrl +'"></script>';
+             var embedlink = '<script src="https://www.vucdigital.dk/library/js/iframe.js" data="'+ jsonData[active_tn].meta_objUrl +'"></script>';
              var help_moodle = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=7lebfIPvWJk">Hjælp til indlejring i Moodle </a>';
              var help_fronter = '<a class="MetaDataLink" target="_blank" href="https://www.youtube.com/watch?v=kUsW0vEXeF4">Hjælp til indlejring i Fronter </a>'
 
 
-            UserMsgBox_xclick("body", "<div class ='content_wrapper'><h4>Du har kopieret indlejringskoden til LMS</h4><p>Koden befinder sig i din udklipsholder, og kan indsættes i HTML'en i LMS eller webside. Klik på <img class='kodelink' src='img/source_code.svg'> for at åbne HTML editoren i Moodle.<br/><br/><code>&lt;script src='https://www.vucdigital.dk/iframe.js' data='" + jsonData[active_tn].meta_objUrl +"'&gt;&lt;/script&gt;</code><br/><br/><p>Hvis denne kode ikke virker kan du anvende den gamle kode hvor du skal angive en fast højde:<br/><code>&lt;iframe height='570' width='100%' frameborder='0' allow='microphone' src='" + jsonData[active_tn].meta_objUrl + "'&gt;&lt;/iframe&gt;</code><br/>" + help_moodle + "<br/>" + help_fronter + "</div>");
+            UserMsgBox_xclick("body", "<div class ='content_wrapper'><h4>Du har kopieret indlejringskoden til LMS</h4><p>Koden befinder sig i din udklipsholder, og kan indsættes i HTML'en i LMS eller webside. Klik på <img class='kodelink' src='img/source_code.svg'> for at åbne HTML editoren i Moodle.<br/><br/><code>&lt;script src='https://www.vucdigital.dk/library/js/iframe.js' data='" + jsonData[active_tn].meta_objUrl +"'&gt;&lt;/script&gt;</code><br/><br/><p>Hvis denne kode ikke virker kan du anvende den gamle kode hvor du skal angive en fast højde:<br/><code>&lt;iframe height='570' width='100%' frameborder='0' allow='microphone' src='" + jsonData[active_tn].meta_objUrl + "'&gt;&lt;/iframe&gt;</code><br/>" + help_moodle + "<br/>" + help_fronter + "</div>");
              return embedlink;
 
          }
@@ -469,6 +469,9 @@
 
      //     cc.srvCall('../objectSearch/index.php', { searchObject_getAllSubjects: 1 }, successCallBack, errorCallBack, 'html');
      // } else {
+     
+
+    //Indsæt EP i Array'et herunder, og det vil optræde på forsiden
      fag_Array = ["BIOLOGI", "DANSK", "ENGELSK", "FYSIK", "GEOGRAFI", "HISTORIE", "KS", "KEMI", "MATEMATIK", "NATURFAG", "SAMFUNDSFAG", "SSO", "TYSK", "PSYKOLOGI", "RELIGION"];
 
      for (var i = 0; i < fag_Array.length; i++) {
